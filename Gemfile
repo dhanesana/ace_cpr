@@ -43,3 +43,9 @@ group :development, :test do
   gem 'spring'
 end
 
+gem 'bootstrap-material-design'
+
+# Stripe Payments
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
+gem 'dotenv-rails', :groups => [:development, :test]
