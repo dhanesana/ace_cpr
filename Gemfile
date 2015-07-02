@@ -50,3 +50,7 @@ end
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 gem 'dotenv-rails', :groups => [:development, :test]
+
+# Admin Interface with Devise integration
+gem 'activeadmin', github: 'activeadmin'
+gem 'devise'
