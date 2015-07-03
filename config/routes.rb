@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   # Stripe Charges Routes
   resources :charges
 
+  resources :users
+  resources :appointments
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
