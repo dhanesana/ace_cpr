@@ -26,12 +26,19 @@ permit_params :list, :of, :attributes, :on, :model, :admin_user_id, :class_date
     f.actions
   end
 
-  # show do
-  #   attributes_table do
-  #     row :class_date
-
-  #   end
-  #   active_admin_comments
-  # end
+  show do |appt|
+    attributes_table do
+      row :class_date
+      row :admin_user
+    end
+    panel("Students") do
+      table_for(appt.users) do
+        column "Users" do |user|
+          "#{user.first_name} #{user.last_name}"
+        end
+      end
+    end
+    active_admin_comments
+  end
 
 end
