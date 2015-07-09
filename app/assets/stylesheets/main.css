@@ -11,3 +11,25 @@
 .mid-headline {
   margin-top: 1.5em;
 }
+
+.name img {
+  margin-bottom: 1px;
+  height: 2em;
+  width: 7.5em;
+}
+
+.top-bar {
+  background: #E0E0E0;
+}
+
+.top-bar-section li a:not(.button) {
+  background: #E0E0E0 !important;
+  color: black;
+  text-decoration: none;
+}
+
+.top-bar-section li a:not(.button):hover {
+  background: #E0E0E0 !important;
+  color: white;
+  text-decoration: none;
+}
