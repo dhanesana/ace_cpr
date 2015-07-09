@@ -10,7 +10,22 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require foundation
  *= require_tree .
  *= require_self
+ *= require foundation_and_overrides
+
  */
+
+#gmap_canvas {
+  height: 20em;
+  width: 27em;
+}
+
+#gmap_canvas img {
+  max-width: none!important;
+  background: none!important;
+}
+
+.mid-headline {
+  margin-top: 1.5em;
+}
