@@ -1,6 +1,6 @@
 #gmap_canvas {
-  height: 20em;
-  width: 27em;
+  min-height: 20em;
+  min-width: 27em;
 }
 
 #gmap_canvas img {
