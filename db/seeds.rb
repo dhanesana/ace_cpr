@@ -8,7 +8,7 @@
 
 Appointment.create(class_date: Time.now)
 AdminUser.create(
-  email: admin@example.com,
+  email: 'admin@example.com',
   password: 'password',
   password_confirmation: 'password'
 )
