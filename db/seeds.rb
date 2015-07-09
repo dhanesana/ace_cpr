@@ -7,3 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Appointment.create(class_date: Time.now)
+AdminUser.create(
+  email: admin@example.com,
+  password: 'password',
+  password_confirmation: 'password'
+)
