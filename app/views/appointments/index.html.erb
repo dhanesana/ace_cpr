@@ -65,9 +65,10 @@
 
 <div class="row">
   <div class="medium-6 large-6 column">
+    <h4> Upcoming Courses </h4>
+    <p>(Select a Class)</p>
     <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
       <thead>
-        <h4> Upcoming Courses </h4>
         <tr>
           <th class="mdl-data-table__cell--non-numeric">Class Date</th>
           <th>Available Spots</th>
@@ -77,7 +78,7 @@
         <% @appointments.each do |appointment| %>
         <tr>
           <td class="mdl-data-table__cell--non-numeric">
-            <a href="#"><%= appointment.class_date.strftime("%B %d, %Y %I:%m %p") %></a>
+            <a class='appt' href="#"><%= appointment.class_date.strftime("%B %d, %Y %I:%m %p") %></a>
           </td>
           <td><%= 30 - appointment.users.size %></td>
         </tr>

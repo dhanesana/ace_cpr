@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.references :appointment, index: true, foreign_key: true
       t.string :email
       t.string :phone
+      t.string :stripe_id
 
       t.timestamps null: false
     end
