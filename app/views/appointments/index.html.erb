@@ -67,42 +67,21 @@
   <div class="medium-6 large-6 column">
     <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
       <thead>
+        <h4> Upcoming Courses </h4>
         <tr>
           <th class="mdl-data-table__cell--non-numeric">Class Date</th>
           <th>Available Spots</th>
         </tr>
       </thead>
       <tbody>
+        <% @appointments.each do |appointment| %>
         <tr>
           <td class="mdl-data-table__cell--non-numeric">
-            <a href="#">Acrylic (Transparent)</a>
+            <a href="#"><%= appointment.class_date.strftime("%B %d, %Y %I:%m %p") %></a>
           </td>
-          <td>25</td>
+          <td><%= 30 - appointment.users.size %></td>
         </tr>
-        <tr>
-          <td class="mdl-data-table__cell--non-numeric">
-            <a href="#">Acrylic (Transparent)</a>
-          </td>
-          <td>25</td>
-        </tr>
-        <tr>
-          <td class="mdl-data-table__cell--non-numeric">
-            <a href="#">Acrylic (Transparent)</a>
-          </td>
-          <td>25</td>
-        </tr>
-        <tr>
-          <td class="mdl-data-table__cell--non-numeric">
-            <a href="#">Acrylic (Transparent)</a>
-          </td>
-          <td>25</td>
-        </tr>
-        <tr>
-          <td class="mdl-data-table__cell--non-numeric">
-            <a href="#">Acrylic (Transparent)</a>
-          </td>
-          <td>25</td>
-        </tr>
+        <% end %>
       </tbody>
     </table>
   </div>
