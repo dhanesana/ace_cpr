@@ -18,6 +18,6 @@
 
 // $(function(){ $(document).foundation(); });
 
-$(document).on('page:change', function() {
-  $(document).foundation();
-});
+// $(document).on('page:change', function() {
+//   $(document).foundation();
+// });
