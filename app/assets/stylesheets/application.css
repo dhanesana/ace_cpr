@@ -15,3 +15,17 @@
  *= require foundation_and_overrides
 
  */
+
+#gmap_canvas {
+  height: 20em;
+  width: 27em;
+}
+
+#gmap_canvas img {
+  max-width: none!important;
+  background: none!important;
+}
+
+.mid-headline {
+  margin-top: 1.5em;
+}
