@@ -10,13 +10,6 @@
       </li>
       <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
     </ul>
-
-    <section class="top-bar-section">
-
-      <ul class="right">
-        <li><a href="#">Nav Button</a></li>
-      </ul>
-    </section>
   </nav>
 </div>
 
@@ -64,19 +57,19 @@
 
 <div class="row">
   <div class="medium-6 large-6 column">
+    <br>
     <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
       <thead>
-        <h4> Upcoming Courses </h4>
         <tr>
           <th class="mdl-data-table__cell--non-numeric">Class Date</th>
           <th>Available Spots</th>
         </tr>
       </thead>
       <tbody>
-        <% @appointments.each do |appointment| %>
+        <% @appointments.reverse.each do |appointment| %>
         <tr>
           <td class="mdl-data-table__cell--non-numeric">
-            <a href="#"><%= appointment.class_date.strftime("%B %d, %Y %I:%m %p") %></a>
+            <%= appointment.class_date.strftime("%B %d, %Y %I:%m %p") %>
           </td>
           <td><%= 30 - appointment.users.size %></td>
         </tr>
@@ -85,9 +78,11 @@
     </table>
   </div>
   <div class="medium-6 large-6 column">
-    <h4 class="text-center">2</h4>
-
     <%= form_for @user, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
+      <p>
+        <%= f.label :class_date %>
+        <%= f.collection_select(:appointment_id, @appointments.reverse, :id, :formated_date ) %>
+      </p><br>
       <p>
         <%= f.label :first_name %>
         <%= f.text_field :first_name %>
@@ -95,10 +90,6 @@
       <p>
         <%= f.label :last_name %>
         <%= f.text_field :last_name %>
-      </p>
-      <p>
-        <%= f.label :email %>
-        <%= f.text_field :email %>
       </p>
       <p>
         <%= f.label :phone %>
