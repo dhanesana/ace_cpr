@@ -8,6 +8,7 @@ class AppointmentsController < ApplicationController
         break if @appointments.size > 4
       end
     end
+    @appointments = @appointments.sort_by { |x| x.class_date }
     @user = User.new
   end
 
