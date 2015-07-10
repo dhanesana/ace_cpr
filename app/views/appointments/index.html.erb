@@ -69,7 +69,7 @@
         <% @appointments.each do |appointment| %>
         <tr>
           <td class="mdl-data-table__cell--non-numeric">
-            <%= appointment.class_date.strftime("%B %d, %Y %I:%m %p") %>
+            <%= appointment.formated_date %>
           </td>
           <td><%= 30 - appointment.users.size %></td>
         </tr>
@@ -96,6 +96,7 @@
         <%= f.label :phone %>
         <%= f.text_field :phone %>
       </p>
+      <p id='total-price'> Total: $100.00 </p>
       <%= form_tag charges_path do %>
         <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
