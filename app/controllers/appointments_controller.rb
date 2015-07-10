@@ -1,10 +1,9 @@
 class AppointmentsController < ApplicationController
 
   def index
-    today_pdt = Time.now.utc + Time.zone_offset('PDT')
     @appointments = []
     Appointment.all.each do |appointment|
-      if appointment.class_date > today_pdt
+      if appointment.class_date.utc > Time.now.utc
         @appointments << appointment unless appointment.users.size > 29
         break if @appointments.size > 4
       end
@@ -16,6 +15,36 @@ class AppointmentsController < ApplicationController
   end
 
   def create
+    @user = User.new(
+      first_name: params[:user][:first_name],
+      last_name: params[:user][:last_name],
+      phone: params[:user][:phone],
+      email: params[:stripeEmail],
+      appointment_id: params[:user][:appointment_id]
+    )
+    if @user.save
+      # Amount in cents
+      @amount = 10000
+
+      customer = Stripe::Customer.create(
+        :email => 'example@stripe.com',
+        :card  => params[:stripeToken]
+      )
+
+      charge = Stripe::Charge.create(
+        :customer    => customer.id,
+        :amount      => @amount,
+        :description => 'Ace CPR Customer',
+        :currency    => 'usd'
+      )
+    else
+      render plain: 'Status 400', status: 400
+    end
+
+
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
+    redirect_to charges_path
   end
 
 end
