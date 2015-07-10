@@ -27,7 +27,7 @@
     <h4>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit.</h4>
   </div>
   <div class="medium-6 large-6 column">
-    <div id="gmap_canvas"></div>
+    <div class="mdl-shadow--2dp" id="gmap_canvas"></div>
   </div>
 </div>
 
@@ -77,7 +77,8 @@
       </tbody>
     </table>
   </div>
-  <div class="medium-6 large-6 column">
+  <div id="form" class="medium-6 large-6 column mdl-shadow--2dp">
+    <br>
     <%= form_for @user, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
       <p>
         <%= f.label :class_date %>
@@ -96,9 +97,6 @@
         <%= f.text_field :phone %>
       </p>
       <%= form_tag charges_path do %>
-        <article class="text-center">
-        </article>
-
         <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
           data-description="Total: $100.00"
@@ -110,9 +108,9 @@
 
 <hr>
 
-<div class="panel">
+<div class="panel mdl-shadow--2dp">
   <div class="row">
-    <div class="medium-6 large-6 column">
+    <div class="small-6 medium-6 large-6 column">
       <p>
         Ace CPR San Diego<br>
         8333 Clairemont Mesa Blvd #21<br>
@@ -120,7 +118,7 @@
         <a href="mailto:webmaster@example.com">Email Us</a>
       </p>
     </div>
-    <div class="medium-6 large-6 column">
+    <div class="small-6 medium-6 large-6 column">
       <ul class="inline-list right">
         <li>
           <a href='/admin'>Admin Login</a>

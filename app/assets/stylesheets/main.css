@@ -33,3 +33,11 @@
   color: white;
   text-decoration: none;
 }
+
+form input[type="text"] {
+  width: 100%;
+}
+
+#form {
+  border-radius: 1%;
+}
