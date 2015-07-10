@@ -9,6 +9,7 @@ class AppointmentsController < ApplicationController
         break if @appointments.size > 4
       end
     end
+    @user = User.new
   end
 
   def new
