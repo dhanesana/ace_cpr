@@ -38,7 +38,7 @@ group :production do
 end
 
 # gem 'dotenv-rails', group: :development, :require => 'dotenv/rails-now'
-gem 'dotenv'
+gem 'dotenv-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
