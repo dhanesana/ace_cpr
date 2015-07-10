@@ -4,7 +4,7 @@ class AppointmentsController < ApplicationController
     @appointments = []
     Appointment.all.each do |appointment|
       if appointment.class_date.utc > Time.now.utc
-        @appointments << appointment unless appointment.users.size > 29
+        @appointments << appointment unless appointment.users.size > 7
         break if @appointments.size > 4
       end
     end
