@@ -75,22 +75,22 @@
   </div>
   <div id="form" class="medium-6 large-6 column mdl-shadow--2dp">
     <br>
-    <%= form_for @user, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
+    <%= form_for @user, url: {action: "create"}, html: {class: "nifty_form", :"data-abide" => ''} do |f| %>
       <p>
         <%= f.label "Select Date" %>
         <%= f.collection_select(:appointment_id, @appointments, :id, :formated_date ) %>
       </p><br>
       <p>
         <%= f.label :first_name %>
-        <%= f.text_field :first_name %>
+        <%= f.text_field :first_name, :required => '' %>
       </p>
       <p>
         <%= f.label :last_name %>
-        <%= f.text_field :last_name %>
+        <%= f.text_field :last_name, :required => '' %>
       </p>
       <p>
         <%= f.label :phone %>
-        <%= f.text_field :phone %>
+        <%= f.text_field :phone, :required => '' %>
       </p>
       <p id='total-price'> Total: $100.00 </p>
       <%= form_tag charges_path do %>
