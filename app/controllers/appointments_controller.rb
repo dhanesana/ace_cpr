@@ -11,6 +11,9 @@ class AppointmentsController < ApplicationController
     @appointments = @appointments.sort_by { |x| x.class_date }
     @user = User.new
     @about = About.last
+    @headline = Headline.last
+    @headline_two = HeadlineTwo.last
+    @headline_three = HeadlineThree.last
   end
 
   def new
