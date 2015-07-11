@@ -122,3 +122,13 @@ label {
 #user_appointment_id {
   border: none !important;
 }
+
+<div class="row">
+  <div class="large-12 column">
+    <h2>Thanks <%= @user.first_name %>, you paid <strong>$100.00</strong>!</h2>
+    <h3> Class begins <%= @appointment.formated_date %></h3>
+    <hr></hr>
+  </div>
+</div>
+
+<hr>
