@@ -12,3 +12,6 @@ AdminUser.create(
   password: 'password',
   password_confirmation: 'password'
 )
+About.create(
+  content: 'Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit.'
+)

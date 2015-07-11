@@ -10,6 +10,7 @@ class AppointmentsController < ApplicationController
     end
     @appointments = @appointments.sort_by { |x| x.class_date }
     @user = User.new
+    @about = About.last
   end
 
   def new
