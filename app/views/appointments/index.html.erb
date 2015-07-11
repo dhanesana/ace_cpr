@@ -104,8 +104,8 @@
       </div>
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
         <%= f.label :phone, :class => 'mdl-textfield__label' %>
-        <%= f.text_field :phone, :class => 'mdl-textfield__input', :pattern => "-?[0-9]*(\.[0-9]+)?" %>
-        <span class="mdl-textfield__error">Input is not a number!</span>
+        <%= f.text_field :phone, :class => 'mdl-textfield__input' %>
+        <!-- <span class="mdl-textfield__error">Input is not a number!</span> -->
       </div><br>
       <div id='total-price'> Total: $100.00 </div>
       <%= form_tag charges_path do %>
