@@ -38,7 +38,7 @@ class AppointmentsController < ApplicationController
         :description => "Class Date: #{Appointment.where(id: params[:user][:appointment_id]).first.class_date.strftime("%B %d, %Y %I:%m %p")}",
         :currency    => 'usd'
       )
-      redirect_to action: 'index'
+      @appointment = Appointment.where(id: @user.appointment_id).first
     else
       render plain: 'Status 400', status: 400
     end
