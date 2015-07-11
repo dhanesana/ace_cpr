@@ -44,8 +44,21 @@ class AppointmentsController < ApplicationController
         :currency    => 'usd'
       )
       @appointment = Appointment.where(id: @user.appointment_id).first
+      @about = About.last
     else
-      render plain: 'Status 400', status: 400
+      @appointments = []
+      Appointment.all.each do |appointment|
+        if appointment.class_date.utc > Time.now.utc
+          @appointments << appointment unless appointment.users.size > 7
+          break if @appointments.size > 4
+        end
+      end
+      @appointments = @appointments.sort_by { |x| x.class_date }
+      @about = About.last
+      @headline = Headline.last
+      @headline_two = HeadlineTwo.last
+      @headline_three = HeadlineThree.last
+      render :index
     end
 
 

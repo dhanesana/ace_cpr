@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(version: 20150711090657) do
 
   create_table "headline_threes", force: :cascade do |t|
     t.text     "main"
-    t.text     "sub"
     t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -71,7 +70,6 @@ ActiveRecord::Schema.define(version: 20150711090657) do
 
   create_table "headline_twos", force: :cascade do |t|
     t.text     "main"
-    t.text     "sub"
     t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -79,7 +77,6 @@ ActiveRecord::Schema.define(version: 20150711090657) do
 
   create_table "headlines", force: :cascade do |t|
     t.text     "main"
-    t.text     "sub"
     t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
