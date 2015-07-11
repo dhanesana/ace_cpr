@@ -15,3 +15,18 @@ AdminUser.create(
 About.create(
   content: 'Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit.'
 )
+Headline.create(
+  main: 'Headline',
+  sub:  'Subheadline',
+  content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos animi, nobis illo. Repellendus atque dolorem, officia recusandae autem, laudantium consectetur, neque!'
+)
+HeadlineTwo.create(
+  main: 'Headline',
+  sub:  'Subheadline',
+  content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos animi, nobis illo. Repellendus atque dolorem, officia recusandae autem, laudantium consectetur, neque!'
+)
+HeadlineThree.create(
+  main: 'Headline',
+  sub:  'Subheadline',
+  content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos animi, nobis illo. Repellendus atque dolorem, officia recusandae autem, laudantium consectetur, neque!'
+)
