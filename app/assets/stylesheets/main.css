@@ -88,3 +88,8 @@ thead th {
 #headerImg {
   min-width: 100%;
 }
+
+label {
+  font-weight: bold !important;
+  color: #424242;
+}
