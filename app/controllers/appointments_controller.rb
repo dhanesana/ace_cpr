@@ -29,7 +29,8 @@ class AppointmentsController < ApplicationController
       @amount = 10000
 
       customer = Stripe::Customer.create(
-        :email => 'example@stripe.com',
+        :description => "Class Date: #{Appointment.where(id: params[:user][:appointment_id]).first.class_date.strftime("%B %d, %Y %I:%m %p")}",
+        :email => params[:stripeEmail],
         :card  => params[:stripeToken]
       )
 
