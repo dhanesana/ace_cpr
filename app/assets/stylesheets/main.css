@@ -49,4 +49,5 @@ form input[type="text"] {
 .panel {
   border: none !important;
   margin-bottom: 0 !important;
+  box-shadow: none !important;
 }
