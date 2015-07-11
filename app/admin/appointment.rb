@@ -15,6 +15,9 @@ permit_params :list, :of, :attributes, :on, :model, :admin_user_id, :class_date
   index do
     column :class_date
     column :admin_user
+    column 'Enrolled' do |appointment|
+      appointment.users.size
+    end
     actions # view/edit/delete
   end
 

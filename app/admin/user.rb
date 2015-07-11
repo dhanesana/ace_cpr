@@ -30,7 +30,9 @@ permit_params :list, :of, :attributes, :on, :model, :first_name, :last_name, :em
     column :first_name
     column :email
     column :phone
-    column :appointment_id
+    column :appointment_id do |user|
+      Appointment.where(id: user.appointment_id).first.formated_date
+    end
     actions # view/edit/delete
   end
 
