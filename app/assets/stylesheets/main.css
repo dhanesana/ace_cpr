@@ -84,3 +84,7 @@ thead th {
 .mdl-data-table th {
   color: white !important;
 }
+
+#headerImg {
+  min-width: 100%;
+}
