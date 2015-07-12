@@ -105,6 +105,7 @@ form input[type="text"] {
 }
 
 .mdl-textfield__label:after {
+  top: 41px;
   background-color: #ff7043 !important;
 }
 
