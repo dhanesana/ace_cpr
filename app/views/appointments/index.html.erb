@@ -71,16 +71,18 @@
       <thead>
         <tr>
           <th class="mdl-data-table__cell--non-numeric">Class Date</th>
-          <th>Available Spots</th>
+          <th>Time (PDT)</th>
         </tr>
       </thead>
       <tbody>
         <% @appointments.each do |appointment| %>
         <tr>
           <td class="mdl-data-table__cell--non-numeric">
-            <%= appointment.formated_date %>
+            <%= appointment.class_date.strftime("%B %d, %Y (%A)") %>
           </td>
-          <td><%= 8 - appointment.users.size %></td>
+          <td>
+            <%= appointment.class_date.strftime("%I:%M %p") %>
+          </td>
         </tr>
         <% end %>
       </tbody>

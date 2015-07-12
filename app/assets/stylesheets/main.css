@@ -132,3 +132,12 @@ label {
 form input[type=text], form input[type=password], form input[type=email], form input[type=number], form input[type=url], form input[type=tel], form input[type=date], form textarea {
   padding-left: 1px !important;
 }
+
+.mdl-data-table td:first-of-type, .mdl-data-table th:first-of-type {  padding: 16px;
+  border: none !important;
+}
+
+.mdl-data-table td:last-of-type, .mdl-data-table th:last-of-type {
+  padding: 16px;
+  border: none !important;
+}
