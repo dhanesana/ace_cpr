@@ -100,6 +100,10 @@ form input[type="text"] {
   padding: 10px 0px !important;
 }
 
+.mdl-textfield__label {
+  top: 16px !important;
+}
+
 .mdl-textfield__label:after {
   background-color: #ff7043 !important;
 }
@@ -113,6 +117,7 @@ form input[type="text"] {
 
 .mdl-textfield--floating-label.is-focused .mdl-textfield__label, .mdl-textfield--floating-label.is-dirty .mdl-textfield__label {
   color: #2196f3 !important;
+  top: -1px !important;
 }
 
 label {
@@ -123,12 +128,6 @@ label {
   border: none !important;
 }
 
-<div class="row">
-  <div class="large-12 column">
-    <h2>Thanks <%= @user.first_name %>, you paid <strong>$100.00</strong>!</h2>
-    <h3> Class begins <%= @appointment.formated_date %></h3>
-    <hr></hr>
-  </div>
-</div>
-
-<hr>
+form input[type=text], form input[type=password], form input[type=email], form input[type=number], form input[type=url], form input[type=tel], form input[type=date], form textarea {
+  padding-left: 1px !important;
+}
