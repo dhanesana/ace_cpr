@@ -33,6 +33,15 @@
   </div>
 <% end %>
 
+<% if @invalid == 1 %>
+  <div class="row" id="error_explanation">
+    <h2>Invalid or Expired:</h2>
+    <ul>
+      <li>The code you entered is either invalid or expired.</li>
+    </ul>
+  </div>
+<% end %>
+
 <div class="row">
   <div class="medium-6 large-6 column">
     <h4><%= @about.content %></h4>
@@ -87,11 +96,24 @@
         <% end %>
       </tbody>
     </table>
+    <% if @redeemed == 0 %>
+      <%= form_for @coupon, url: {:action => "create", :controller => "coupons"}  do |g| %>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+          <div class="medium-3" id="coupon-input">
+            <%= g.label "Enter Promotion Code", :class => 'mdl-textfield__label' %>
+            <%= g.text_field :code, :class => 'mdl-textfield__input' %>
+          </div>
+          <div class="medium-3">
+            <%= g.submit 'Redeem', :class => 'coupon-submit button mdl-shadow--2dp' %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 
   <div id="form" class="medium-6 large-6 column mdl-shadow--2dp">
     <br>
-    <%= form_for @user, url: {action: "create"}, html: {class: "nifty_form", :"data-abide" => ''} do |f| %>
+    <%= form_for @user, url: {:action => "create", :controller => "appointments"}, html: {class: "nifty_form", :"data-abide" => ''} do |f| %>
       <div>
         <%= f.label "Select Date" %>
         <%= f.collection_select(:appointment_id, @appointments, :id, :formated_date ) %>
@@ -109,12 +131,12 @@
         <%= f.text_field :phone, :class => 'mdl-textfield__input' %>
         <!-- <span class="mdl-textfield__error">Input is not a number!</span> -->
       </div><br>
-      <div id='total-price'> Total: $100.00 </div>
+      <div id='total-price'> Total: $<%= '%.2f' % @price %> </div>
       <%= form_tag charges_path do %>
         <script src="https://checkout.stripe.com/checkout.js" class="stripe-button mdl-shadow--2dp"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="Total: $100.00"
-          data-amount="10000"></script>
+          data-description="Total: $<%= '%.2f' % @price %>"
+          data-amount="<%= @price * 100 %>"></script>
       <% end %>
     <% end %>
   </div>
