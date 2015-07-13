@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :appointments
+  resources :coupons
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

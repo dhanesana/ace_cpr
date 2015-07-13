@@ -27,3 +27,4 @@ HeadlineThree.create(
   main: 'Headline',
   content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos animi, nobis illo. Repellendus atque dolorem, officia recusandae autem, laudantium consectetur, neque!'
 )
+Price.create(cost: '60')
