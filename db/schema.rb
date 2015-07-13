@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150711090657) do
+ActiveRecord::Schema.define(version: 20150713203359) do
 
   create_table "abouts", force: :cascade do |t|
     t.text     "content"
@@ -61,6 +61,13 @@ ActiveRecord::Schema.define(version: 20150711090657) do
 
   add_index "appointments", ["admin_user_id"], name: "index_appointments_on_admin_user_id"
 
+  create_table "coupons", force: :cascade do |t|
+    t.string   "code"
+    t.string   "discount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "headline_threes", force: :cascade do |t|
     t.text     "main"
     t.text     "content"
@@ -78,6 +85,12 @@ ActiveRecord::Schema.define(version: 20150711090657) do
   create_table "headlines", force: :cascade do |t|
     t.text     "main"
     t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "prices", force: :cascade do |t|
+    t.string   "cost"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

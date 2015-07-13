@@ -14,6 +14,10 @@ class AppointmentsController < ApplicationController
     @headline = Headline.last
     @headline_two = HeadlineTwo.last
     @headline_three = HeadlineThree.last
+    @coupon = Coupon.new
+    @price = Price.last.cost.to_i
+    @redeemed = 0
+    session[:price] = nil
   end
 
   def new
@@ -29,7 +33,11 @@ class AppointmentsController < ApplicationController
     )
     if @user.save
       # Amount in cents
-      @amount = 10000
+      @price = Price.last.cost.to_i
+      @price = session[:price] if session[:price]
+      puts '8' * 50
+      p @price
+      @amount = @price * 100
 
       customer = Stripe::Customer.create(
         :description => "Class Date: #{Appointment.where(id: params[:user][:appointment_id]).first.class_date.strftime("%B %d, %Y %I:%m %p")}",

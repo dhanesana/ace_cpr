@@ -95,6 +95,31 @@ form input[type="text"] {
   box-shadow: none !important;
 }
 
+#coupon-input {
+  /*width: 50% !important;*/
+  display: inline !important;
+}
+
+.coupon-submit {
+  background-color: #9E9E9E !important;
+}
+
+form input[type=submit], form input[type=button], form button {
+  border-radius: 0 !important;
+  padding: 0.5em;
+  font-family: 'Helvetica', 'Arial';
+  font-size: 1em;
+  font-weight: 0em;
+  border: none;
+  box-shadow: none;
+  text-shadow: none;
+  display: inline;
+}
+
+a.button, a:link.button, a:visited.button, input[type=submit], input[type=button], button {
+  background-image: none !important;
+}
+
 .mdl-textfield {
   width: 100% !important;
   padding: 10px 0px !important;
