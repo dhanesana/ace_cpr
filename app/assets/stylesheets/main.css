@@ -107,8 +107,8 @@ form input[type="text"] {
 form input[type=submit], form input[type=button], form button {
   border-radius: 0 !important;
   padding: 0.5em;
-  font-family: 'Helvetica', 'Arial';
-  font-size: 1em;
+  font-family: "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
+  font-size: 14px;
   font-weight: 0em;
   border: none;
   box-shadow: none;
