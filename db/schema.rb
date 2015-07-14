@@ -101,8 +101,9 @@ ActiveRecord::Schema.define(version: 20150713203359) do
     t.integer  "appointment_id"
     t.string   "email"
     t.string   "phone"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.string   "formatted_phone"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "users", ["appointment_id"], name: "index_users_on_appointment_id"
