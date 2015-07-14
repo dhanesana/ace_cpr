@@ -62,11 +62,15 @@ class AppointmentsController < ApplicationController
         end
       end
       @appointments = @appointments.sort_by { |x| x.class_date }
+      @user = User.new
       @about = About.last
       @headline = Headline.last
       @headline_two = HeadlineTwo.last
       @headline_three = HeadlineThree.last
-      render :index
+      @coupon = Coupon.new
+      @price = Price.last.cost.to_i
+      @redeemed = 0
+      session[:price] = nil
     end
 
 
