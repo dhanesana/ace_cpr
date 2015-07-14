@@ -63,3 +63,4 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
 
+gem 'phony_rails'

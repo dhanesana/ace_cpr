@@ -29,7 +29,7 @@ permit_params :list, :of, :attributes, :on, :model, :first_name, :last_name, :em
     column :last_name
     column :first_name
     column :email
-    column :phone
+    column :formatted_phone
     column :appointment_id do |user|
       Appointment.where(id: user.appointment_id).first.formated_date
     end
