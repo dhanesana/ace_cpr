@@ -12,6 +12,10 @@ permit_params :main, :sub, :content
 #   permitted << :other if resource.something?
 #   permitted
 # end
+controller do
+  actions :all, except: [:create, :destroy]
+end
 
+config.clear_action_items!
 
 end
