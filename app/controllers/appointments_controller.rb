@@ -17,6 +17,7 @@ class AppointmentsController < ApplicationController
     @coupon = Coupon.new
     @price = Price.last.cost.to_i
     @redeemed = 0
+    @contact = Contact.first
     session[:price] = nil
   end
 
@@ -70,6 +71,7 @@ class AppointmentsController < ApplicationController
       @coupon = Coupon.new
       @price = Price.last.cost.to_i
       @redeemed = 0
+      @contact = Contact.first
       session[:price] = nil
     end
 

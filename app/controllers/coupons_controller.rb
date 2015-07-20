@@ -32,6 +32,7 @@ class CouponsController < ApplicationController
       @price = @price - @coupon.discount.to_i
       session[:price] = @price
       @redeemed = 1
+      @contact = Contact.first
       render :template => 'appointments/index'
     else
       @appointments = []
@@ -50,6 +51,7 @@ class CouponsController < ApplicationController
       @coupon = Coupon.new
       @price = Price.last.cost.to_i
       @redeemed = 0
+      @contact = Contact.first
       puts '()' * 25
       @invalid = 1
       render :template => 'appointments/index'
