@@ -1,0 +1,27 @@
+$(document).on('page:change', function() {
+
+<% require 'open-uri' %>
+<% require 'geocoder' %>
+<% @contact = Contact.first %>
+<% @response = Geocoder.search("#{@contact.street} #{@contact.area}") %>
+<% @lat = @response.first.data['geometry']['location']['lat'] %>
+<% @lng = @response.first.data['geometry']['location']['lng'] %>
+
+  function init_map() {
+    var myOptions = {
+      zoom:15,
+      center:new google.maps.LatLng(<%= @lat.to_f %>, <%= @lng.to_f %>),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);
+    marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(<%= @lat.to_f %>, <%= @lng.to_f %>)});
+    infowindow = new google.maps.InfoWindow({
+      content:"<a href='https://maps.google.com?q=<%= URI.encode("#{@contact.street} #{@contact.area}") %>'><b><%= @contact.name %></b></a><br/><%= @contact.street %><br/><%= @contact.area %>" });
+    google.maps.event.addListener(marker, "click", function() {
+      infowindow.open(map,marker);
+    });
+    infowindow.open(map,marker);
+  }
+  google.maps.event.addDomListener(window, 'load', init_map);
+
+});

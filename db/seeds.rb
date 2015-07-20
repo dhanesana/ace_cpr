@@ -28,3 +28,9 @@ HeadlineThree.create(
   content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos animi, nobis illo. Repellendus atque dolorem, officia recusandae autem, laudantium consectetur, neque!'
 )
 Price.create(cost: '60')
+Contact.create(
+  name: 'Ace CPR San Diego',
+  street: '8333 Clairemont Mesa Blvd #215',
+  area: 'San Diego, CA 92111',
+  email: 'acecprsd@example.com'
+)
