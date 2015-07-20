@@ -148,10 +148,10 @@
   <div class="row">
     <div class="small-8 medium-6 large-6 column">
       <p>
-        Ace CPR San Diego<br>
-        8333 Clairemont Mesa Blvd #21<br>
-        San Diego, CA 92111<br>
-        <a href="mailto:webmaster@example.com">Email Us</a>
+        <%= @contact.name %><br>
+        <%= @contact.street %><br>
+        <%= @contact.area %><br>
+        <a href="<%= @contact.email %>">Email Us</a>
       </p>
     </div>
     <div class="small-4 medium-6 large-6 column">

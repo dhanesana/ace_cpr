@@ -64,3 +64,4 @@ gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
 
 gem 'phony_rails'
+gem 'geocoder'
