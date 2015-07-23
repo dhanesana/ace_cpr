@@ -5,8 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
-Appointment.create(class_date: Time.now)
+Type.create(name: 'Normal', description: 'Normal class, normal price')
+Price.create(cost: '60', type_id: Type.first.id)
+Appointment.create(class_date: Time.now, type_id: Type.first.id)
 AdminUser.create(
   email: 'admin@example.com',
   password: 'password',
@@ -27,4 +28,3 @@ HeadlineThree.create(
   main: 'Headline',
   content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos animi, nobis illo. Repellendus atque dolorem, officia recusandae autem, laudantium consectetur, neque!'
 )
-Price.create(cost: '60')

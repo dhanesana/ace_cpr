@@ -3,7 +3,7 @@ ActiveAdmin.register Price do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :cost
+permit_params :cost, :type_id
 #
 # or
 #
@@ -13,10 +13,19 @@ permit_params :cost
 #   permitted
 # end
 
-controller do
-  actions :all, except: [:create, :destroy]
+index do
+  column :type
+  column :cost
+  # column 'Enrolled' do |appointment|
+  #   appointment.users.size
+  # end
+  actions # view/edit/delete
 end
 
-config.clear_action_items!
+# controller do
+#   actions :all, except: [:create, :destroy]
+# end
+
+# config.clear_action_items!
 
 end
