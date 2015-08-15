@@ -2,8 +2,10 @@
 
 one:
   code: MyString
-  percent: 1
+  discount: 1
+  belongs_to: 
 
 two:
   code: MyString
-  percent: 1
+  discount: 1
+  belongs_to: 

@@ -131,12 +131,12 @@
         <%= f.text_field :phone, :class => 'mdl-textfield__input' %>
         <!-- <span class="mdl-textfield__error">Input is not a number!</span> -->
       </div><br>
-      <div id='total-price'> Total: $<%= '%.2f' % @price %> </div>
+      <div id='total-price'> Total: $100 </div>
       <%= form_tag charges_path do %>
         <script src="https://checkout.stripe.com/checkout.js" class="stripe-button mdl-shadow--2dp"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="Total: $<%= '%.2f' % @price %>"
-          data-amount="<%= @price * 100 %>"></script>
+          data-description="Total: $100>"
+          data-amount="<%= 10000 %>"></script>
       <% end %>
     <% end %>
   </div>
