@@ -168,7 +168,16 @@ form input[type=text], form input[type=password], form input[type=email], form i
   padding-left: 1px !important;
 }
 
-.mdl-data-table td {
+.index-table th:first-of-type {  padding: 16px;
+  border: none !important;
+}
+
+.index-table th:last-of-type {
+  padding: 16px;
+  border: none !important;
+}
+
+.main-td {
   text-align: left !important;
 }
 

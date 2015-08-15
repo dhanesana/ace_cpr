@@ -47,3 +47,4 @@ HeadlineThree.create(
   main: 'Headline',
   content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos animi, nobis illo. Repellendus atque dolorem, officia recusandae autem, laudantium consectetur, neque!'
 )
+MainHeaderImage.create(image_url: 'http://i.imgur.com/5TmBuib.jpg')
