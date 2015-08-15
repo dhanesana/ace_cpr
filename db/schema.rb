@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 20150815010801) do
 
   create_table "types", force: :cascade do |t|
     t.string   "name"
+    t.string   "blurb"
     t.text     "description"
     t.integer  "cost"
     t.string   "image_url"

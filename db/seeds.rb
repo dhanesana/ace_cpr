@@ -7,8 +7,16 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Type.create(
   name: 'Normal',
+  blurb: 'Bacon ipsum dolor sit amet',
   description: 'Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit.',
   cost: 70,
+  image_url: 'http://i.imgur.com/5TmBuib.jpg'
+)
+Type.create(
+  name: 'Advanced',
+  blurb: 'Bacon ipsum dolor sit amet',
+  description: 'Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit.',
+  cost: 100,
   image_url: 'http://i.imgur.com/5TmBuib.jpg'
 )
 Appointment.create(class_date: Time.now)
