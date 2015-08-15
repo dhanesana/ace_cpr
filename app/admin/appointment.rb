@@ -3,7 +3,7 @@ ActiveAdmin.register Appointment do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :list, :of, :attributes, :on, :model, :admin_user_id, :class_date
+permit_params :list, :of, :attributes, :on, :model, :admin_user_id, :class_date, :type_id
 #
 # or
 #
@@ -24,6 +24,7 @@ permit_params :list, :of, :attributes, :on, :model, :admin_user_id, :class_date
   form do |f|
     f.inputs "Appointment Details" do
       f.input :admin_user_id, as: :select, collection: AdminUser.all.collect {|admin| [admin.email, admin.id] }
+      f.input :type_id, as: :select, collection: Type.all.collect {|type| [type.name, type.id] }
       f.input :class_date
     end
     f.actions
@@ -33,6 +34,7 @@ permit_params :list, :of, :attributes, :on, :model, :admin_user_id, :class_date
     attributes_table do
       row :class_date
       row :admin_user
+      row :type_id
     end
     panel("Students") do
       table_for(appt.users) do
