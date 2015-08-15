@@ -184,3 +184,7 @@ form input[type=text], form input[type=password], form input[type=email], form i
 .orbit-bullets {
   margin: 0 auto 10px auto !important;
 }
+
+#aha-logo {
+  margin-bottom: 2em;
+}
