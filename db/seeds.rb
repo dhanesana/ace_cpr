@@ -19,7 +19,14 @@ Type.create(
   cost: 100,
   image_url: 'http://i.imgur.com/5TmBuib.jpg'
 )
-Appointment.create(class_date: Time.now)
+Appointment.create(
+  class_date: Time.now,
+  type_id: 1
+)
+Appointment.create(
+  class_date: Time.now,
+  type_id: 2
+)
 AdminUser.create(
   email: 'admin@example.com',
   password: 'password',

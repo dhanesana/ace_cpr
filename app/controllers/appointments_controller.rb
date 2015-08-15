@@ -2,21 +2,12 @@ class AppointmentsController < ApplicationController
 
   def index
     @types = Type.all
-    @appointments = []
-    Appointment.all.each do |appointment|
-      if appointment.class_date.utc > Time.now.utc
-        @appointments << appointment unless appointment.users.size > 7
-        break if @appointments.size > 4
-      end
-    end
-    @appointments = @appointments.sort_by { |x| x.class_date }
     @user = User.new
     @about = About.last
     @headline = Headline.last
     @headline_two = HeadlineTwo.last
     @headline_three = HeadlineThree.last
     @coupon = Coupon.new
-    # @price = Price.last.cost.to_i
     @redeemed = 0
     session[:price] = nil
   end

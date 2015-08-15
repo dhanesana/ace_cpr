@@ -81,6 +81,7 @@ form input[type="submit"]:hover:not(.disabled), form input[type="button"]:hover:
 
 thead th {
   background: #ff7043;
+  padding-bottom: 15px !important;
 }
 
 .mdl-data-table th {
@@ -159,11 +160,6 @@ form input[type=text], form input[type=password], form input[type=email], form i
   padding-left: 1px !important;
 }
 
-.mdl-data-table td:first-of-type, .mdl-data-table th:first-of-type {  padding: 16px;
-  border: none !important;
-}
-
-.mdl-data-table td:last-of-type, .mdl-data-table th:last-of-type {
-  padding: 16px;
-  border: none !important;
+.mdl-data-table td {
+  text-align: left !important;
 }
