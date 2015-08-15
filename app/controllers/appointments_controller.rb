@@ -8,6 +8,7 @@ class AppointmentsController < ApplicationController
     @headline_two = HeadlineTwo.last
     @headline_three = HeadlineThree.last
     @coupon = Coupon.new
+    @header = MainHeaderImage.first
     @redeemed = 0
     session[:price] = nil
   end

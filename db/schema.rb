@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150815010801) do
+ActiveRecord::Schema.define(version: 20150815054214) do
 
   create_table "abouts", force: :cascade do |t|
     t.text     "content"
@@ -87,6 +87,12 @@ ActiveRecord::Schema.define(version: 20150815010801) do
   create_table "headlines", force: :cascade do |t|
     t.text     "main"
     t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "main_header_images", force: :cascade do |t|
+    t.string   "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
