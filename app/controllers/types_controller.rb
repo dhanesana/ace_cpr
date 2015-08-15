@@ -20,6 +20,7 @@ class TypesController < ApplicationController
     @coupon = Coupon.new
     # @price = Price.last.cost.to_i
     @redeemed = 0
+    @user_error = 0
     session[:price] = nil
   end
 
@@ -77,7 +78,8 @@ class TypesController < ApplicationController
       @coupon = Coupon.new
       @redeemed = 0
       session[:price] = nil
-      # render :template => 'types/show'
+      @user_error = 1
+      render :template => 'types/show'
     end
 
 
