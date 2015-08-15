@@ -2,9 +2,10 @@ class TypesController < ApplicationController
 
   def show
     @type = Type.where(id: params[:id]).first
+    @price = @type.cost
     @types = Type.all
     @appointments = []
-    Appointment.all.each do |appointment|
+    @type.appointments.each do |appointment|
       if appointment.class_date.utc > Time.now.utc
         @appointments << appointment unless appointment.users.size > 7
         break if @appointments.size > 4

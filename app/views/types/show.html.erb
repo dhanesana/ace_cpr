@@ -77,6 +77,7 @@
     </table>
     <% if @redeemed == 0 %>
       <%= form_for @coupon, url: {:action => "create", :controller => "coupons"}  do |g| %>
+        <%= hidden_field_tag :type_id, @type.id  %>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
           <div class="medium-3" id="coupon-input">
             <%= g.label "Enter Promotion Code", :class => 'mdl-textfield__label' %>
@@ -110,12 +111,12 @@
         <%= f.text_field :phone, :class => 'mdl-textfield__input' %>
         <!-- <span class="mdl-textfield__error">Input is not a number!</span> -->
       </div><br>
-      <div id='total-price'> Total: $<%= '%.2f' % @type.cost %> </div>
+      <div id='total-price'> Total: $<%= @price %> </div>
       <%= form_tag charges_path do %>
         <script src="https://checkout.stripe.com/checkout.js" class="stripe-button mdl-shadow--2dp"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="Total: $<%= '%.2f' % @type.cost %>"
-          data-amount="<%= @type.cost * 100 %>"></script>
+          data-description="Total: $<%= @price %>"
+          data-amount="<%= @price * 100 %>"></script>
       <% end %>
     <% end %>
   </div>
