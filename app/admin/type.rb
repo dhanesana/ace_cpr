@@ -1,9 +1,9 @@
-ActiveAdmin.register Price do
+ActiveAdmin.register Type do
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :cost
+# permit_params :list, :of, :attributes, :on, :model
 #
 # or
 #
@@ -13,10 +13,5 @@ permit_params :cost
 #   permitted
 # end
 
-controller do
-  actions :all, except: [:create, :destroy]
-end
-
-config.clear_action_items!
 
 end

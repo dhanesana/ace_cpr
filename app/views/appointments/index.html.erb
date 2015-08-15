@@ -3,7 +3,7 @@
     <ul class="title-area">
       <li class="name">
         <h1>
-          <a href="http://acecprsd.com">
+          <a href="/">
             <img src='http://i.imgur.com/hLSH4op.png'></img>
           </a>
         </h1>
@@ -15,7 +15,7 @@
 <header>
   <div>
     <div class="large-12">
-      <img id="headerImg" src="http://i.imgur.com/5TmBuib.jpg"/>
+      <img id="headerImg" src=<%= @header.image_url %>/>
     </div>
   </div>
 </header>
@@ -72,79 +72,40 @@
   </li>
 </ul>
 
-<br>
 
 <div class="row">
-  <div class="medium-6 large-6 column">
-    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+  <div class="medium-12 large-12 column">
+    <h3> Class Types </h3>
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp index-table" id="types-table">
       <thead>
         <tr>
-          <th class="mdl-data-table__cell--non-numeric">Class Date</th>
-          <th>Time (PDT)</th>
+          <th class="mdl-data-table__cell--non-numeric">Class Type</th>
+          <th class="mdl-data-table__cell--non-numeric">Description</th>
+          <th class="mdl-data-table__cell--non-numeric">Sign up</th>
         </tr>
       </thead>
       <tbody>
-        <% @appointments.each do |appointment| %>
+        <% @types.each do |type| %>
         <tr>
-          <td class="mdl-data-table__cell--non-numeric">
-            <%= appointment.class_date.strftime("%B %d, %Y (%A)") %>
+          <td class="mdl-data-table__cell--non-numeric main-td">
+            <%= type.name %>
           </td>
-          <td>
-            <%= appointment.class_date.strftime("%I:%M %p") %>
+          <td class="main-td">
+            <%= type.blurb %>
+          </td>
+          <td class="mdl-data-table__cell--non-numeric main-td">
+            <%= link_to "Sign Up", type %>
           </td>
         </tr>
         <% end %>
       </tbody>
     </table>
-    <% if @redeemed == 0 %>
-      <%= form_for @coupon, url: {:action => "create", :controller => "coupons"}  do |g| %>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-          <div class="medium-3" id="coupon-input">
-            <%= g.label "Enter Promotion Code", :class => 'mdl-textfield__label' %>
-            <%= g.text_field :code, :class => 'mdl-textfield__input' %>
-          </div>
-          <div class="medium-3">
-            <%= g.submit 'Redeem', :class => 'coupon-submit button mdl-shadow--2dp' %>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-
-  <div id="form" class="medium-6 large-6 column mdl-shadow--2dp">
-    <br>
-    <%= form_for @user, url: {:action => "create", :controller => "appointments"}, html: {class: "nifty_form", :"data-abide" => ''} do |f| %>
-      <div>
-        <%= f.label "Select Date" %>
-        <%= f.collection_select(:appointment_id, @appointments, :id, :formated_date ) %>
-      </div><br>
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-        <%= f.label :first_name, :class => 'mdl-textfield__label' %>
-        <%= f.text_field :first_name, :class => 'mdl-textfield__input' %>
-      </div>
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-        <%= f.label :last_name, :class => 'mdl-textfield__label' %>
-        <%= f.text_field :last_name, :class => 'mdl-textfield__input' %>
-      </div>
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-        <%= f.label :phone, :class => 'mdl-textfield__label' %>
-        <%= f.text_field :phone, :class => 'mdl-textfield__input' %>
-        <!-- <span class="mdl-textfield__error">Input is not a number!</span> -->
-      </div><br>
-      <div id='total-price'> Total: $<%= '%.2f' % @price %> </div>
-      <%= form_tag charges_path do %>
-        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button mdl-shadow--2dp"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="Total: $<%= '%.2f' % @price %>"
-          data-amount="<%= @price * 100 %>"></script>
-      <% end %>
-    <% end %>
   </div>
 </div>
 
 <br>
 <br>
-<div class="panel mdl-shadow--2dp">
+<div class="panel mdl-shadow--2dp large-12 medium-12">
   <div class="row">
     <div class="small-8 medium-6 large-6 column">
       <p>

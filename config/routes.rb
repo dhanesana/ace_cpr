@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :charges
 
   resources :users
+  resources :types
   resources :appointments
   resources :coupons
 
