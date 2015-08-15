@@ -3,7 +3,7 @@
     <ul class="title-area">
       <li class="name">
         <h1>
-          <a href="http://acecprsd.com">
+          <a href="/">
             <img src='http://i.imgur.com/hLSH4op.png'></img>
           </a>
         </h1>
@@ -15,7 +15,7 @@
 <header>
   <div>
     <div class="large-12">
-      <img id="headerImg" src="http://i.imgur.com/5TmBuib.jpg"/>
+      <img id="headerImg" src=<%= @type.image_url %>/>
     </div>
   </div>
 </header>
@@ -44,7 +44,7 @@
 
 <div class="row">
   <!-- <div class="medium-12 large-12"> -->
-    <h3 class="medium-12 large-12"><%= @type.name %></h3>
+    <h3><%= @type.name %></h3>
   <!-- </div> -->
   <div class="medium-12 large-12 column">
     <h4><%= @type.description %></h4>
@@ -92,7 +92,7 @@
 
   <div id="form" class="medium-6 large-6 column mdl-shadow--2dp">
     <br>
-    <%= form_for @user, url: {:action => "create", :controller => "appointments"}, html: {class: "nifty_form", :"data-abide" => ''} do |f| %>
+    <%= form_for @user, url: {:action => "create", :controller => "types"}, html: {class: "nifty_form", :"data-abide" => ''} do |f| %>
       <div>
         <%= f.label "Select Date" %>
         <%= f.collection_select(:appointment_id, @appointments, :id, :formated_date ) %>
