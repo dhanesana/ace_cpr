@@ -1,4 +1,4 @@
-$(document).on('page:change', function() {
+$(document).ready(function() {
 
   function init_map() {
     var myOptions = {
