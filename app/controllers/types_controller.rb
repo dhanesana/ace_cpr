@@ -1,5 +1,9 @@
 class TypesController < ApplicationController
 
+  def index
+
+  end
+
   def show
     @type = Type.where(id: params[:id]).first
     @price = @type.cost
@@ -73,7 +77,7 @@ class TypesController < ApplicationController
       @coupon = Coupon.new
       @redeemed = 0
       session[:price] = nil
-      render :template => 'types/show'
+      # render :template => 'types/show'
     end
 
 
