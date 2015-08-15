@@ -55,9 +55,14 @@ class TypesController < ApplicationController
       )
       @about = About.last
     else
-      puts '5' * 50
+      @appointment = Appointment.where(id: params['user']['appointment_id']).first
+      puts '*' * 50
+      p @appointment.id
+      @type = Type.where(id: @appointment.type_id).first
+      @price = @type.cost
+      @types = Type.all
       @appointments = []
-      Appointment.all.each do |appointment|
+      @type.appointments.each do |appointment|
         if appointment.class_date.utc > Time.now.utc
           @appointments << appointment unless appointment.users.size > 7
           break if @appointments.size > 4
@@ -65,14 +70,10 @@ class TypesController < ApplicationController
       end
       @appointments = @appointments.sort_by { |x| x.class_date }
       @user = User.new
-      @about = About.last
-      @headline = Headline.last
-      @headline_two = HeadlineTwo.last
-      @headline_three = HeadlineThree.last
       @coupon = Coupon.new
-      # @price = @type.cost
       @redeemed = 0
       session[:price] = nil
+      render :template => 'types/show'
     end
 
 
