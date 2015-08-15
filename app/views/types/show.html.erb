@@ -22,14 +22,9 @@
 
 <br>
 
-<% if @user.errors.any? %>
+<% if @user_error == 1 %>
   <div class="row" id="error_explanation">
-    <h2><%= pluralize(@user.errors.count, "error") %> prohibited you from signing up. Correct the following and resubmit:</h2>
-    <ul>
-    <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
+    <h2> All fields must be completed. Thank you! </h2>
   </div>
 <% end %>
 
