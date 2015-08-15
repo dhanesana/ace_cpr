@@ -80,8 +80,8 @@
       <thead>
         <tr>
           <th class="mdl-data-table__cell--non-numeric">Class Type</th>
-          <th>Description</th>
-          <th>Sign up</th>
+          <th class="mdl-data-table__cell--non-numeric">Description</th>
+          <th class="mdl-data-table__cell--non-numeric">Sign up</th>
         </tr>
       </thead>
       <tbody>
@@ -93,8 +93,8 @@
           <td>
             <%= type.blurb %>
           </td>
-          <td>
-            <a href='/'>Sign up</a>
+          <td class="mdl-data-table__cell--non-numeric">
+            <%= link_to "Sign Up", type %>
           </td>
         </tr>
         <% end %>
