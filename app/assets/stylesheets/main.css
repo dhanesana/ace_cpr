@@ -187,6 +187,7 @@ form input[type=text], form input[type=password], form input[type=email], form i
 
 #aha-logo {
   margin-bottom: 2em;
+  float: right;
 }
 
 .types {
