@@ -79,22 +79,21 @@
     <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp index-table" id="types-table">
       <thead>
         <tr>
-          <th class="mdl-data-table__cell--non-numeric">Class Type</th>
-          <th class="mdl-data-table__cell--non-numeric">Description</th>
-          <th class="mdl-data-table__cell--non-numeric">Sign up</th>
+          <th class="mdl-data-table__cell--non-numeric">
+            Select a class type to view available courses:
+          </th>
         </tr>
       </thead>
       <tbody>
         <% @types.each do |type| %>
         <tr>
           <td class="mdl-data-table__cell--non-numeric main-td">
-            <%= type.name %>
-          </td>
-          <td class="main-td">
-            <%= type.blurb %>
-          </td>
-          <td class="mdl-data-table__cell--non-numeric main-td">
-            <%= link_to "Sign Up", type %>
+            <p>
+              <%= link_to type.name, type %>
+            </p>
+            <p>
+              <%= type.blurb %>
+            </p>
           </td>
         </tr>
         <% end %>
