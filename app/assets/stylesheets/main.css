@@ -192,3 +192,8 @@ form input[type=text], form input[type=password], form input[type=email], form i
 td {
   cursor: pointer;
 }
+
+.blurb {
+  white-space: initial;
+  text-overflow: ellipsis;
+}
