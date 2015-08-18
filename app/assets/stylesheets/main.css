@@ -189,7 +189,7 @@ form input[type=text], form input[type=password], form input[type=email], form i
   margin-bottom: 2em;
 }
 
-td {
+.types {
   cursor: pointer;
 }
 
