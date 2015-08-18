@@ -91,8 +91,8 @@
             <p>
               <%= link_to type.name, type %>
             </p>
-            <p>
-              <%= type.blurb %>
+            <div>
+              <%= truncate(type.blurb, :length => 53) %>
             </p>
           </td>
         </tr>
