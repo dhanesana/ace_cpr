@@ -21,6 +21,7 @@ class TypesController < ApplicationController
     # @price = Price.last.cost.to_i
     @redeemed = 0
     @user_error = 0
+    @refund_policy = Refund.all.first
     session[:price] = nil
   end
 
@@ -59,6 +60,7 @@ class TypesController < ApplicationController
         :currency    => 'usd'
       )
       @about = About.last
+      @refund_policy = Refund.all.first
     else
       @appointment = Appointment.where(id: params['user']['appointment_id']).first
       puts '*' * 50
@@ -79,6 +81,7 @@ class TypesController < ApplicationController
       @redeemed = 0
       session[:price] = nil
       @user_error = 1
+      @refund_policy = Refund.all.first
       render :template => 'types/show'
     end
 
