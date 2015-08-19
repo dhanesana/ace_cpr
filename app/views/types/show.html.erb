@@ -122,6 +122,9 @@
           data-amount="<%= @price * 100 %>"></script>
       <% end %>
     <% end %>
+    <% if @refund_policy.policy.size > 0 %>
+      <p>** <%= @refund_policy.policy %></p>
+    <% end %>
   </div>
 </div>
 
