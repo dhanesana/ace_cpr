@@ -78,19 +78,27 @@
         <% end %>
       </tbody>
     </table>
-    <% if @redeemed == 0 %>
-      <%= form_for @coupon, url: {:action => "create", :controller => "coupons"}  do |g| %>
-        <%= hidden_field_tag :type_id, @type.id  %>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-          <div class="medium-3" id="coupon-input">
-            <%= g.label "Enter Promotion Code", :class => 'mdl-textfield__label' %>
-            <%= g.text_field :code, :class => 'mdl-textfield__input' %>
-          </div>
-          <div class="medium-3">
-            <%= g.submit 'Redeem', :class => 'coupon-submit button mdl-shadow--2dp' %>
-          </div>
-        </div>
-      <% end %>
+      <% if @appointments.size > 0 %>
+        <% if @redeemed == 0 %>
+          <%= form_for @coupon, url: {:action => "create", :controller => "coupons"}  do |g| %>
+            <%= hidden_field_tag :type_id, @type.id  %>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+              <div class="medium-3" id="coupon-input">
+                <%= g.label "Enter Promotion Code", :class => 'mdl-textfield__label' %>
+                <%= g.text_field :code, :class => 'mdl-textfield__input' %>
+              </div>
+              <div class="medium-3">
+                <%= g.submit 'Redeem', :class => 'coupon-submit button mdl-shadow--2dp' %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+        <% else %>
+          <p>
+            <strong>
+              No classes are currently scheduled at this time. Check back for future scheduling.
+            </strong>
+          </p>
     <% end %>
   </div>
 
@@ -115,11 +123,13 @@
         <!-- <span class="mdl-textfield__error">Input is not a number!</span> -->
       </div><br>
       <div id='total-price'> Total: $<%= @price %> </div>
-      <%= form_tag charges_path do %>
-        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button mdl-shadow--2dp"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="Total: $<%= @price %>"
-          data-amount="<%= @price * 100 %>"></script>
+      <% if @appointments.size > 0 %>
+        <%= form_tag charges_path do %>
+          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button mdl-shadow--2dp"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-description="Total: $<%= @price %>"
+            data-amount="<%= @price * 100 %>"></script>
+        <% end %>
       <% end %>
     <% end %>
     <% if @refund_policy.policy.size > 0 %>
