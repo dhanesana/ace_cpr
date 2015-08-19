@@ -43,6 +43,14 @@
   <!-- </div> -->
   <div class="medium-12 large-12 column">
     <h4><%= @type.description %></h4>
+    <% if @type.notes.size > 0 %>
+      <p>
+        <strong> NOTE: <%= @type.notes %> </strong>
+      </p>
+    <% end %>
+    <% if @type.duration.size > 0 %>
+      <p>Duration: <%= @type.duration %></p>
+    <% end %>
   </div>
 </div>
 
