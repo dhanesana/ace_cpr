@@ -192,6 +192,7 @@ form input[type=text], form input[type=password], form input[type=email], form i
 
 .types {
   cursor: pointer;
+  white-space: initial;
 }
 
 .blurb {
