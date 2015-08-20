@@ -26,7 +26,7 @@ ActiveAdmin.register AdminUser do
   end
 
   controller do
-    actions :all, except: [:edit, :destroy]
+    actions :all, except: [:destroy]
   end
 
 end
