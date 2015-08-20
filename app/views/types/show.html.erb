@@ -47,9 +47,7 @@
 <% end %>
 
 <div class="row">
-  <!-- <div class="medium-12 large-12"> -->
-    <h3><%= @type.name %></h3>
-  <!-- </div> -->
+  <h3><%= @type.name %></h3>
   <div class="medium-12 large-12 column">
     <h4><%= @type.description %></h4>
     <% if @type.notes.size > 0 %>
@@ -59,6 +57,31 @@
     <% end %>
     <% if @type.duration.size > 0 %>
       <p>Duration: <%= @type.duration %></p>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="medium-12 large-12 column">
+    <% if @type.textbooks.size > 0 %>
+      <div class="medium-12 large-12 column">
+      <p>
+        <strong> Required Text:</strong>
+      </p>
+      <% @type.textbooks.each do |book| %>
+        <% if book.buy_url.size > 0 %>
+          <h6>
+            <a href="<%=book.buy_url%>" target="_blank"><%= book.name %></a>
+          </h6>
+        <% else %>
+          <h6><%= book.name %></h6>
+        <% end %>
+        <div class="large-12">
+          <img class="mdl-shadow--2dp" src="<%= book.image_url %>"/>
+        </div>
+        <br></br>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>
