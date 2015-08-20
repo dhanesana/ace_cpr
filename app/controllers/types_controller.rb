@@ -23,10 +23,10 @@ class TypesController < ApplicationController
     @user_error = 0
     @refund_policy = Refund.all.first
     session[:price] = nil
+    session[:coupon] = nil
   end
 
   def create
-    # @type = Type.where(id: params[:id]).first
     @user = User.new(
       first_name: params[:user][:first_name],
       last_name: params[:user][:last_name],
@@ -35,16 +35,15 @@ class TypesController < ApplicationController
       appointment_id: params[:user][:appointment_id]
     )
     if @user.save
-      # Amount in cents
+      if session[:coupon]
+        @coupon = Coupon.where(id: session[:coupon]['id']).first
+        @coupon.limit -= 1
+        @coupon.save
+      end
       @appointment = Appointment.where(id: @user.appointment_id).first
-      puts '75' * 20
-      p @appointment.type_id
-      puts '-' * 50
       @type = Type.where(id: @appointment.type_id).first
-      puts '8' * 50
       @price = @type.cost
       @price = session[:price] if session[:price]
-      p @price
       @amount = @price * 100
 
       customer = Stripe::Customer.create(
@@ -63,8 +62,6 @@ class TypesController < ApplicationController
       @refund_policy = Refund.all.first
     else
       @appointment = Appointment.where(id: params['user']['appointment_id']).first
-      puts '*' * 50
-      p @appointment.id
       @type = Type.where(id: @appointment.type_id).first
       @price = @type.cost
       @types = Type.all

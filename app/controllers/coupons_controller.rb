@@ -7,9 +7,8 @@ class CouponsController < ApplicationController
   end
 
   def create
-    puts '*' * 50
     input = params['coupon']['code']
-    puts '*' * 50
+    @refund_policy = Refund.all.first
     @type = Type.where(id: params[:type_id]).first
     @types = Type.all
     @appointments = []
@@ -22,15 +21,14 @@ class CouponsController < ApplicationController
     @appointments = @appointments.sort_by { |x| x.class_date }
     @user = User.new
     @coupon = Coupon.where(code: input, type_id: params[:type_id]).first
+    @coupon = nil if @coupon.limit < 1
     @price = Type.where(id: params[:type_id]).first.cost
     if @coupon
       @type = Type.where(id: params[:type_id]).first
-      puts '9' * 50
-      p @coupon
-      puts '9' * 50
       @price = @price - @coupon.discount.to_i
       session[:price] = @price
       @redeemed = 1
+      session[:coupon] = @coupon
       render :template => 'types/show'
     else
       @type = Type.where(id: params[:type_id]).first
