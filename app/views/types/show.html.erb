@@ -37,6 +37,15 @@
   </div>
 <% end %>
 
+<% if @redeemed == 1 %>
+  <div class="row" id="redeemed_explanation">
+    <h2>Discount Applied:</h2>
+    <ul>
+      <li>You may proceed with enrollment.</li>
+    </ul>
+  </div>
+<% end %>
+
 <div class="row">
   <!-- <div class="medium-12 large-12"> -->
     <h3><%= @type.name %></h3>
