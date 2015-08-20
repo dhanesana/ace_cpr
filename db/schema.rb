@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150819034434) do
+ActiveRecord::Schema.define(version: 20150820030753) do
 
   create_table "abouts", force: :cascade do |t|
     t.text     "content"
@@ -66,8 +66,9 @@ ActiveRecord::Schema.define(version: 20150819034434) do
     t.string   "code"
     t.integer  "discount"
     t.integer  "type_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "limit",      default: 10000
   end
 
   create_table "headline_threes", force: :cascade do |t|
