@@ -10,6 +10,7 @@ class AppointmentsController < ApplicationController
     @coupon = Coupon.new
     @header = MainHeaderImage.first
     @redeemed = 0
+    @about_list = AboutList.first
     session[:price] = nil
   end
 

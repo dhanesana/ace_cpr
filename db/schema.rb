@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150820030753) do
+ActiveRecord::Schema.define(version: 20150820070958) do
+
+  create_table "about_bullets", force: :cascade do |t|
+    t.text     "bullet"
+    t.integer  "about_list_id", default: 2
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "about_lists", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "abouts", force: :cascade do |t|
     t.text     "content"
