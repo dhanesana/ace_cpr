@@ -203,3 +203,7 @@ form input[type=text], form input[type=password], form input[type=email], form i
 p {
   font-family: "Roboto","Helvetica","Arial",sans-serif !important;
 }
+
+.bullets {
+  margin: 0px 0px 16px;
+}

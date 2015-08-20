@@ -43,9 +43,21 @@
 <% end %>
 
 <div class="row">
-  <div class="medium-6 large-6 column">
-    <h4><%= @about.content %></h4>
-  </div>
+  <% if @about_list.about_bullets.size > 0 %>
+    <div class="medium-6 large-6 column">
+      <ul>
+      <% @about_list.about_bullets.each do |bullet_object| %>
+        <li>
+          <h4 class='bullets'><%= bullet_object.bullet %></h4>
+        </li>
+      <% end %>
+      </ul>
+    </div>
+  <% else %>
+    <div class="medium-6 large-6 column">
+      <h4><%= @about.content %></h4>
+    </div>
+  <% end %>
   <div class="medium-6 large-6 column">
     <div class="mdl-shadow--2dp" id="gmap_canvas"></div>
     <div>
