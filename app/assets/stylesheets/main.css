@@ -199,3 +199,7 @@ form input[type=text], form input[type=password], form input[type=email], form i
   white-space: initial;
   text-overflow: ellipsis;
 }
+
+p {
+  font-family: "Roboto","Helvetica","Arial",sans-serif !important;
+}
