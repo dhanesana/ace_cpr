@@ -13,8 +13,4 @@ permit_params :list, :of, :attributes, :on, :model, :bullet, :about_list_id, :or
 #   permitted
 # end
 
-# controller do
-#   actions :all, except: [:create, :destroy]
-# end
-
 end
