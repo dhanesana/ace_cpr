@@ -11,6 +11,7 @@ class AppointmentsController < ApplicationController
     @header = MainHeaderImage.first
     @redeemed = 0
     @about_list = AboutList.first
+    @font_size = AboutFont.first.size
     session[:price] = nil
   end
 
