@@ -45,8 +45,9 @@
 <div class="row">
   <% if @about_list.about_bullets.size > 0 %>
     <div class="medium-6 large-6 column">
+      <% bullets = @about_list.about_bullets.all.sort { |a, b| a.order <=> b.order } %>
       <ul>
-      <% @about_list.about_bullets.each do |bullet_object| %>
+      <% bullets.each do |bullet_object| %>
         <li style="font-size:<%=@font_size%>em; line-height:100% !important" class='bullets'>
           <%= bullet_object.bullet %>
         </li>
