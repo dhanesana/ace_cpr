@@ -1,7 +1,7 @@
 class AppointmentsController < ApplicationController
 
   def index
-    @types = Type.all
+    @types = Type.all.sort { |a, b| a.order <=> b.order }
     @user = User.new
     @about = About.last
     @headline = Headline.last
