@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150820181804) do
+ActiveRecord::Schema.define(version: 20150824044626) do
 
   create_table "about_bullets", force: :cascade do |t|
     t.text     "bullet"
@@ -131,10 +131,11 @@ ActiveRecord::Schema.define(version: 20150820181804) do
     t.text     "description"
     t.integer  "cost"
     t.string   "image_url"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.text     "notes"
     t.string   "duration"
+    t.integer  "order",       default: 9999
   end
 
   create_table "users", force: :cascade do |t|
