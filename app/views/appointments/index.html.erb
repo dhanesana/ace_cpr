@@ -47,15 +47,15 @@
     <div class="medium-6 large-6 column">
       <ul>
       <% @about_list.about_bullets.each do |bullet_object| %>
-        <li>
-          <h4 class='bullets'><%= bullet_object.bullet %></h4>
+        <li style="font-size:<%=@font_size%>em; line-height:100% !important" class='bullets'>
+          <%= bullet_object.bullet %>
         </li>
       <% end %>
       </ul>
     </div>
   <% else %>
     <div class="medium-6 large-6 column">
-      <h4><%= @about.content %></h4>
+      <p style="font-size:<%=@font_size%>em; line-height:100% !important"><%= @about.content %></p>
     </div>
   <% end %>
   <div class="medium-6 large-6 column">

@@ -11,13 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824044626) do
+ActiveRecord::Schema.define(version: 20150824052556) do
 
   create_table "about_bullets", force: :cascade do |t|
     t.text     "bullet"
-    t.integer  "about_list_id", default: 2
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "about_list_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "about_fonts", force: :cascade do |t|
+    t.float    "size",       default: 1.0
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "about_lists", force: :cascade do |t|
@@ -133,8 +139,8 @@ ActiveRecord::Schema.define(version: 20150824044626) do
     t.string   "image_url"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.text     "notes"
-    t.string   "duration"
+    t.text     "notes",       default: ""
+    t.string   "duration",    default: ""
     t.integer  "order",       default: 9999
   end
 
