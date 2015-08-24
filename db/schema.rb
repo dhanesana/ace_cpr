@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824052556) do
+ActiveRecord::Schema.define(version: 20150824092828) do
 
   create_table "about_bullets", force: :cascade do |t|
     t.text     "bullet"
     t.integer  "about_list_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "order",         default: 9999
   end
 
   create_table "about_fonts", force: :cascade do |t|
