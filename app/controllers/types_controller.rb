@@ -11,11 +11,13 @@ class TypesController < ApplicationController
     @appointments = []
     @type.appointments.each do |appointment|
       if appointment.class_date.utc > Time.now.utc
+        puts '*' * 50
+        puts appointment.class_date
         @appointments << appointment unless appointment.users.size > 7
-        break if @appointments.size > 4
+        # break if @appointments.size > 4
       end
     end
-    @appointments = @appointments.sort_by { |x| x.class_date }
+    @appointments = @appointments.sort_by { |x| x.class_date }.slice!(0..4)
     @user = User.new
     @coupon = Coupon.new
     # @price = Price.last.cost.to_i
