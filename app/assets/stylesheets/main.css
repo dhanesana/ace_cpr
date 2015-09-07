@@ -210,5 +210,7 @@ p {
 
 .appts {
   overflow-y: scroll;
-  height: 25em;
+  height: 20em;
+  border: 5px black;
+  margin-bottom: 1em;
 }
