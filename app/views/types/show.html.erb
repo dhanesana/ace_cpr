@@ -90,26 +90,28 @@
 
 <div class="row">
   <div class="medium-6 large-6 column">
-    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-      <thead>
-        <tr>
-          <th class="mdl-data-table__cell--non-numeric">Class Date</th>
-          <th>Time (PDT)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @appointments.each do |appointment| %>
-        <tr>
-          <td class="mdl-data-table__cell--non-numeric">
-            <%= appointment.class_date.strftime("%B %d, %Y (%A)") %>
-          </td>
-          <td>
-            <%= appointment.class_date.strftime("%I:%M %p") %>
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <div class='appts'>
+      <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <thead>
+          <tr>
+            <th class="mdl-data-table__cell--non-numeric">Class Date</th>
+            <th>Time (PDT)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @appointments.each do |appointment| %>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">
+              <%= appointment.class_date.strftime("%B %d, %Y (%A)") %>
+            </td>
+            <td>
+              <%= appointment.class_date.strftime("%I:%M %p") %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
       <% if @appointments.size > 0 %>
         <% if @redeemed == 0 %>
           <%= form_for @coupon, url: {:action => "create", :controller => "coupons"}  do |g| %>
