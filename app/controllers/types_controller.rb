@@ -47,7 +47,7 @@ class TypesController < ApplicationController
       @amount = @price * 100
 
       customer = Stripe::Customer.create(
-        :description => "Class Date: #{Appointment.where(id: params[:user][:appointment_id]).first.class_date.strftime("%B %d, %Y %I:%m %p")}",
+        :description => "Class Date: #{Appointment.where(id: params[:user][:appointment_id]).first.class_date.strftime("%B %d, %Y %I:%M %p")}",
         :email => params[:stripeEmail],
         :card  => params[:stripeToken]
       )
@@ -55,7 +55,7 @@ class TypesController < ApplicationController
       charge = Stripe::Charge.create(
         :customer    => customer.id,
         :amount      => @amount,
-        :description => "Class Date: #{Appointment.where(id: params[:user][:appointment_id]).first.class_date.strftime("%B %d, %Y %I:%m %p")}",
+        :description => "Class Date: #{Appointment.where(id: params[:user][:appointment_id]).first.class_date.strftime("%B %d, %Y %I:%M %p")}",
         :currency    => 'usd'
       )
       @about = About.last
