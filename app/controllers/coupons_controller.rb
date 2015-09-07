@@ -15,10 +15,10 @@ class CouponsController < ApplicationController
     @type.appointments.each do |appointment|
       if appointment.class_date.utc > Time.now.utc
         @appointments << appointment unless appointment.users.size > 7
-        break if @appointments.size > 4
+        # break if @appointments.size > 4
       end
     end
-    @appointments = @appointments.sort_by { |x| x.class_date }
+    @appointments = @appointments.sort_by { |x| x.class_date }.slice!(0..4)
     @user = User.new
     @coupon = Coupon.where(code: input, type_id: params[:type_id]).first
     @coupon = nil if @coupon.limit < 1
