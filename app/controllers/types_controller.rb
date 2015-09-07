@@ -15,7 +15,8 @@ class TypesController < ApplicationController
         # break if @appointments.size > 4
       end
     end
-    @appointments = @appointments.sort_by { |x| x.class_date }.slice!(0..4)
+    @appointments = @appointments.sort_by { |x| x.class_date }
+    # @appointments.slice!(0..4)
     @user = User.new
     @coupon = Coupon.new
     # @price = Price.last.cost.to_i
