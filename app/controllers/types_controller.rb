@@ -41,6 +41,7 @@ class TypesController < ApplicationController
         @coupon.limit -= 1
         @coupon.save
       end
+      UserNotifier.send_signup_email(@user).deliver_now
       @appointment = Appointment.where(id: @user.appointment_id).first
       @type = Type.where(id: @appointment.type_id).first
       @price = @type.cost

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Dear <%= @user.first_name %> <%= @user.last_name %>,</p>
+    <p></p>
+    <p>Thank you for choosing ACE CPR and trusting us to provide you with high quality instruction! We are excited to be a part of your process in learning to save lives.</p>
+    <p></p>
+    <strong>We have received your payment and your class is scheduled for:</strong>
+    <p></p>
+    <table border="1" style="width:100%">
+      <tr>
+        <td>Class Type:</td>
+        <td><%= @appointment.type.name %></td>
+      </tr>
+      <tr>
+        <td>Date:</td>
+        <td><%= @appointment.class_date.strftime("%B %d, %Y (%A)") %></td>
+      </tr>
+      <tr>
+        <td>Time:</td>
+        <td><%= @appointment.class_date.strftime("%I:%M %p (%Z)") %></td>
+      </tr>
+      <tr>
+        <td>Location:</td>
+        <td>
+          <p>8333 CLAIREMONT MESA BLVD, SUITE 215</p>
+          <p>SAN DIEGO, CA 92111</p>
+        </td>
+      </tr>
+    </table>
+    <p></p>
+    <strong>PLEASE BRING:</strong>
+    <% if @appointment.type.textbooks.size < 1 %>
+      <p>
+        None at this time
+      </p>
+    <% else %>
+      <% @appointment.type.textbooks.each do |book| %>
+        <% if book.buy_url.size > 0 %>
+          <p>
+            <a href="<%=book.buy_url%>" target="_blank"><%= book.name %></a>
+          </p>
+        <% else %>
+          <p><%= book.name %></p>
+        <% end %>
+      <% end %>
+    <% end %>
+    <strong>WHAT TO EXPECT:</strong>
+    <p>Please wear loose, comfortable clothing as you will be practicing skills that require working on your hands and knees, bending, standing, and lifting. If you have any physical conditions that might prevent you from participating in the course, please notify us at least 48 hours prior to your scheduled class so we can arrange any special accommodations that may be necessary. Each instructor will work to accommodate your needs within the stated course completion requirements.</p>
+    <p>We look forward to welcoming you on <%= @appointment.class_date.strftime("%B %d, %Y (%A)") %>, at <%= @appointment.class_date.strftime("%I:%M %p (%Z)") %>. If you have any questions about the course, please call us at (619) 736-9223 or email us at acecprsd@gmail.com.</p>
+    <p></p>
+    <p>Sincerely,</p>
+    <img src="http://i.imgur.com/tSA5Htp.png" style="">
+    <p>acecprsd.com | acecprsd@gmail.com | (619) 736-9223</p>
+    <p>8333 Clairemont Mesa Blvd, Suite 215 | San Diego, CA 92111</p>
+    <br>
+    <p style="font-size: 80%">
+      This email and any files transmitted with it are confidential and intended solely for the use of the individual or entity to whom they are addressed. If you have received this email in error, please notify us at acecprsd@gmail.com. This message contains confidential information and is intended only for the individual named. If you are not the named addressee you should not disseminate, distribute or copy this e-mail. Please notify the sender immediately by e-mail if you have received this e-mail by mistake and delete this e-mail from your system. If you are not the intended recipient you are notified that disclosing, copying, distributing or taking any action in reliance on the contents of this information is strictly prohibited.
+    </p>
+  </body>
+</html>
