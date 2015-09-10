@@ -4,7 +4,7 @@ ActiveAdmin.register_page "Dashboard" do
     columns do
       column do
         panel "Recently Created Appointments (30)" do
-          table_for Appointment.order('created_at asc').limit(30).each do |appointment|
+          table_for Appointment.order('created_at desc').limit(30).each do |appointment|
             puts '^' * 50
             p appointment
             column("Date")    {|appt| link_to(appt.formated_date, admin_appointment_path(appt)) }
