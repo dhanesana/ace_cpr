@@ -90,4 +90,6 @@ Rails.application.configure do
     :enable_starttls_auto => true
   }
 
+  Rails.application.routes.default_url_options[:host] = "#{ENV['APP_NAME']}.herokuapp.com"
+
 end
