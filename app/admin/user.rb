@@ -16,7 +16,7 @@ permit_params :list, :of, :attributes, :on, :model, :first_name, :last_name, :em
     utc = Time.now.utc
     today_pdt = utc + Time.zone_offset('PDT')
     f.inputs "Student Details" do
-      f.input :appointment_id, as: :select, collection: (Appointment.all.sort_by &:class_date).select { |a| a.class_date > today_pdt }.collect {|appointment| [appointment.class_date.strftime("%m-%d-%Y %I:%m %p"), appointment.id] }
+      f.input :appointment_id, as: :select, collection: (Appointment.all.sort_by &:class_date).select { |a| a.class_date > today_pdt }.collect {|appointment| [appointment.class_date.strftime("%m-%d-%Y %I:%M %p"), appointment.id] }
       f.input :first_name
       f.input :last_name
       f.input :email

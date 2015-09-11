@@ -38,8 +38,14 @@ permit_params :list, :of, :attributes, :on, :model, :admin_user_id, :class_date,
     end
     panel("Students") do
       table_for(appt.users) do
-        column "Users" do |user|
-          "#{user.first_name} #{user.last_name}"
+        column "Name" do |user|
+          link_to("#{user.first_name} #{user.last_name}", admin_user_path(user))
+        end
+        column "Email" do |user|
+          link_to("#{user.email}", admin_user_path(user))
+        end
+        column "Phone" do |user|
+          link_to("#{user.formatted_phone}", admin_user_path(user))
         end
       end
     end
