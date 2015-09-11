@@ -25,7 +25,47 @@
 <div class="row">
   <div class="large-12 column">
     <h2>Thanks for your payment, <strong><%= @user.first_name %></strong>!</h2>
-    <h3> Class begins <%= @appointment.formated_date %></h3>
+    <table border="1" style="width:100%">
+      <tr>
+        <td>Class Type:</td>
+        <td><%= @appointment.type.name %></td>
+      </tr>
+      <tr>
+        <td>Date:</td>
+        <td><%= @appointment.class_date.strftime("%B %d, %Y (%A)") %></td>
+      </tr>
+      <tr>
+        <td>Time:</td>
+        <td><%= @appointment.class_date.strftime("%I:%M %p (%Z)") %></td>
+      </tr>
+      <tr>
+        <td>Location:</td>
+        <td>
+          <p>8333 CLAIREMONT MESA BLVD, SUITE 215</p>
+          <p>SAN DIEGO, CA 92111</p>
+        </td>
+      </tr>
+    </table>
+    <p></p>
+    <strong>PLEASE BRING:</strong>
+    <% if @appointment.type.textbooks.size < 1 %>
+      <p>
+        None at this time
+      </p>
+    <% else %>
+      <% @appointment.type.textbooks.each do |book| %>
+        <% if book.buy_url.size > 0 %>
+          <p>
+            <a href="<%=book.buy_url%>" target="_blank"><%= book.name %></a>
+          </p>
+        <% else %>
+          <p><%= book.name %></p>
+        <% end %>
+      <% end %>
+    <% end %>
+    <strong>WHAT TO EXPECT:</strong>
+    <p>Please wear loose, comfortable clothing as you will be practicing skills that require working on your hands and knees, bending, standing, and lifting. If you have any physical conditions that might prevent you from participating in the course, please notify us at least 48 hours prior to your scheduled class so we can arrange any special accommodations that may be necessary. Each instructor will work to accommodate your needs within the stated course completion requirements.</p>
+    <p>We look forward to welcoming you on <%= @appointment.class_date.strftime("%B %d, %Y (%A)") %>, at <%= @appointment.class_date.strftime("%I:%M %p (%Z)") %>. If you have any questions about the course, please call us at (619) 736-9223 or email us at acecprsd@gmail.com.</p>
     <hr></hr>
   </div>
 </div>

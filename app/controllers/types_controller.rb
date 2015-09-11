@@ -42,7 +42,7 @@ class TypesController < ApplicationController
         @coupon.save
       end
       UserNotifier.send_signup_email(@user).deliver_now
-      @appointment = Appointment.where(id: @user.appointment_id).first
+      @appointment = Appointment.where(id: params[:user][:appointment_id]).first
       @type = Type.where(id: @appointment.type_id).first
       @price = @type.cost
       @price = session[:price] if session[:price]
@@ -63,7 +63,7 @@ class TypesController < ApplicationController
       @about = About.last
       @refund_policy = Refund.all.first
     else
-      @appointment = Appointment.where(id: params['user']['appointment_id']).first
+      @appointment = Appointment.where(id: params[:user][:appointment_id]).first
       @type = Type.where(id: @appointment.type_id).first
       @price = @type.cost
       @types = Type.all
