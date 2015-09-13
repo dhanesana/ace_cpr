@@ -10,9 +10,10 @@ class TypesController < ApplicationController
     @types = Type.all
     @appointments = []
     @type.appointments.each do |appointment|
-      if appointment.class_date.utc > Time.now.utc
+      @appointments << appointment if appointment.users.size > 0 && appointment.class_date.utc > Time.now.utc && appointment.users.size < 9
+      if (appointment.class_date.utc - 43200) > Time.now.utc
+        next if @appointments.include? appointment
         @appointments << appointment unless appointment.users.size > 7
-        # break if @appointments.size > 4
       end
     end
     @appointments = @appointments.sort_by { |x| x.class_date }
