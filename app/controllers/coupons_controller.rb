@@ -1,10 +1,10 @@
 class CouponsController < ApplicationController
 
-  def index
-  end
+  # def index
+  # end
 
-  def new
-  end
+  # def new
+  # end
 
   def create
     input = params['coupon']['code']
@@ -13,13 +13,13 @@ class CouponsController < ApplicationController
     @types = Type.all
     @appointments = []
     @type.appointments.each do |appointment|
-      if appointment.class_date.utc > Time.now.utc
+      @appointments << appointment if appointment.users.size > 0 && appointment.class_date.utc > Time.now.utc && appointment.users.size < 9
+      if (appointment.class_date.utc - 43200) > Time.now.utc
+        next if @appointments.include? appointment
         @appointments << appointment unless appointment.users.size > 7
-        # break if @appointments.size > 4
       end
     end
     @appointments = @appointments.sort_by { |x| x.class_date }
-    # @appointments.slice!(0..4)
     @user = User.new
     @coupon = Coupon.where(code: input, type_id: params[:type_id]).first
     @coupon = nil if @coupon.limit < 1
@@ -35,9 +35,10 @@ class CouponsController < ApplicationController
       @type = Type.where(id: params[:type_id]).first
       @appointments = []
       @type.appointments.each do |appointment|
-        if appointment.class_date.utc > Time.now.utc
+        @appointments << appointment if appointment.users.size > 0 && appointment.class_date.utc > Time.now.utc && appointment.users.size < 9
+        if (appointment.class_date.utc - 43200) > Time.now.utc
+          next if @appointments.include? appointment
           @appointments << appointment unless appointment.users.size > 7
-          break if @appointments.size > 4
         end
       end
       @appointments = @appointments.sort_by { |x| x.class_date }
@@ -45,7 +46,6 @@ class CouponsController < ApplicationController
       @coupon = Coupon.new
       @price = Type.where(id: params[:type_id]).first.cost
       @redeemed = 0
-      puts '()' * 25
       @invalid = 1
       render :template => 'types/show'
     end
