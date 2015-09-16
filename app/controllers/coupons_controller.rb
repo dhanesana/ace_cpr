@@ -19,6 +19,14 @@ class CouponsController < ApplicationController
         @appointments << appointment unless appointment.users.size > 7
       end
     end
+    # remove combo appointment ifs secondary courses are full
+    @appointments.each do |appt|
+      if appt.secondaries.size > 0
+        appt.secondaries.each do |secondary|
+          @appointments.delete(appt) if secondary.users.size > 7
+        end
+      end
+    end
     @appointments = @appointments.sort_by { |x| x.class_date }
     @user = User.new
     @price = Type.where(id: params[:type_id]).first.cost

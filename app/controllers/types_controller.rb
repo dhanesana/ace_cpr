@@ -101,6 +101,14 @@ class TypesController < ApplicationController
           @appointments << appointment unless appointment.users.size > 7
         end
       end
+      # remove combo appointment ifs secondary courses are full
+      @appointments.each do |appt|
+        if appt.secondaries.size > 0
+          appt.secondaries.each do |secondary|
+            @appointments.delete(appt) if secondary.users.size > 7
+          end
+        end
+      end
       @appointments = @appointments.sort_by { |x| x.class_date }
       @user = User.new
       @coupon = Coupon.new
@@ -123,6 +131,14 @@ class TypesController < ApplicationController
       if (appointment.class_date.utc - 43200) > Time.now.utc
         next if @appointments.include? appointment
         @appointments << appointment unless appointment.users.size > 7
+      end
+    end
+    # remove combo appointment ifs secondary courses are full
+    @appointments.each do |appt|
+      if appt.secondaries.size > 0
+        appt.secondaries.each do |secondary|
+          @appointments.delete(appt) if secondary.users.size > 7
+        end
       end
     end
     @appointments = @appointments.sort_by { |x| x.class_date }
