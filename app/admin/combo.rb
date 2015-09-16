@@ -12,6 +12,35 @@ permit_params :list, :of, :attributes, :on, :model, :primary_id, :secondary_id
 #   permitted << :other if resource.something?
 #   permitted
 # end
+  index do
+    column :id
+    column 'Primary Type' do |combo|
+      appt = Appointment.where(id: combo.primary_id).first
+      "#{appt.type.name}"
+    end
+    column 'Primary Date' do |combo|
+      appt = Appointment.where(id: combo.primary_id).first
+      "#{appt.formated_date}"
+    end
+    column 'Primary Students' do |combo|
+      appt = Appointment.where(id: combo.primary_id).first
+      "#{appt.users.size}"
+    end
+    column 'Secondary Type' do |combo|
+      appt = Appointment.where(id: combo.secondary_id).first
+      "#{appt.type.name}"
+    end
+    column 'Secondary Date' do |combo|
+      appt = Appointment.where(id: combo.secondary_id).first
+      "#{appt.formated_date}"
+    end
+    column 'Secondary Students' do |combo|
+      appt = Appointment.where(id: combo.secondary_id).first
+      "#{appt.users.size}"
+    end
+    actions # view/edit/delete
+  end
+
   form do |f|
     f.inputs "Combo Details" do
       f.input :primary_id, as: :select, collection: Appointment.all.collect {|appt| ["#{appt.type.name} => #{appt.formated_date}", appt.id] }
