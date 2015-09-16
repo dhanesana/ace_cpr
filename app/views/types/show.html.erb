@@ -21,6 +21,14 @@
 </header>
 
 <br>
+<% if @card_error == 1 %>
+  <div class="row" id="error_explanation">
+    <h2>Charge Failed:</h2>
+    <ul>
+      <li>The card you entered was declined. Please verify the information you've entered is correct before submitting your payment. Thank you! You may contact us for further assistance.</li>
+    </ul>
+  </div>
+<% end %>
 
 <% if @user_error == 1 %>
   <div class="row" id="error_explanation">
