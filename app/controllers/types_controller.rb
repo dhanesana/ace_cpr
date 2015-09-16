@@ -17,6 +17,14 @@ class TypesController < ApplicationController
         @appointments << appointment unless appointment.users.size > 7
       end
     end
+    # remove combo appointment ifs secondary courses are full
+    @appointments.each do |appt|
+      if appt.secondaries.size > 0
+        appt.secondaries.each do |secondary|
+          @appointments.delete(appt) if secondary.users.size > 7
+        end
+      end
+    end
     @appointments = @appointments.sort_by { |x| x.class_date }
     @user = User.new
     @coupon = Coupon.new
@@ -46,26 +54,43 @@ class TypesController < ApplicationController
       email: params[:stripeEmail],
       appointment_id: params[:user][:appointment_id]
     )
-    # send payment information to Stripe
-    customer = Stripe::Customer.create(
-      :description => "Class Date: #{@appointment.class_date.strftime("%B %d, %Y %I:%M %p")}",
-      :email => params[:stripeEmail],
-      :card  => params[:stripeToken]
-    )
-    charge = Stripe::Charge.create(
-      :customer    => customer.id,
-      :amount      => @amount,
-      :description => "Class Date: #{@appointment.class_date.strftime("%B %d, %Y %I:%M %p")}",
-      :currency    => 'usd'
-    )
 
     if @user.save
       if session[:coupon]
         @coupon.limit -= 1
         @coupon.save
       end
+      # send payment information to Stripe
+      customer = Stripe::Customer.create(
+        :description => "Class Date: #{@appointment.class_date.strftime("%B %d, %Y %I:%M %p")}",
+        :email => params[:stripeEmail],
+        :card  => params[:stripeToken]
+      )
+      charge = Stripe::Charge.create(
+        :customer    => customer.id,
+        :amount      => @amount,
+        :description => "Class Date: #{@appointment.class_date.strftime("%B %d, %Y %I:%M %p")}",
+        :currency    => 'usd'
+      )
       # send confirmation email (template: send_signup_email )
-      UserNotifier.send_signup_email(@user).deliver_now
+      # UserNotifier.send_signup_email(@user).deliver_now
+      # if appointment is a combo
+      if @appointment.secondaries.size > 0
+        @appointment.secondaries.each do |course|
+          combo = Combo.where(
+            primary_id: @appointment.id,
+            secondary_id: course.id
+          ).first
+          user = User.new(
+            first_name: params[:user][:first_name],
+            last_name: "#{params[:user][:last_name]} (via combo ##{combo.id})",
+            phone: params[:user][:phone],
+            email: params[:stripeEmail],
+            appointment_id: course.id
+          )
+          user.save
+        end
+      end
     else
       @price = @type.cost
       @appointments = []
