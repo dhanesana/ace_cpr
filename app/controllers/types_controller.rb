@@ -73,7 +73,7 @@ class TypesController < ApplicationController
         :currency    => 'usd'
       )
       # send confirmation email (template: send_signup_email )
-      # UserNotifier.send_signup_email(@user).deliver_now
+      UserNotifier.send_signup_email(@user).deliver_now
       # if appointment is a combo
       if @appointment.secondaries.size > 0
         @appointment.secondaries.each do |course|
