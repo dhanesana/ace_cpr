@@ -63,4 +63,8 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
 
+# format phone input
 gem 'phony_rails'
+
+# webserver
+gem 'puma'
