@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150916061131) do
+ActiveRecord::Schema.define(version: 20150921030943) do
 
   create_table "about_bullets", force: :cascade do |t|
     t.text     "bullet"
@@ -150,6 +150,7 @@ ActiveRecord::Schema.define(version: 20150916061131) do
     t.text     "notes",       default: ""
     t.string   "duration",    default: ""
     t.integer  "order",       default: 9999
+    t.string   "passcode"
   end
 
   create_table "users", force: :cascade do |t|

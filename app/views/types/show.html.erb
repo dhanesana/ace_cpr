@@ -20,165 +20,180 @@
   </div>
 </header>
 
-<br>
-<% if @card_error == 1 %>
-  <div class="row" id="error_explanation">
-    <h2>Charge Failed:</h2>
-    <ul>
-      <li>The card you entered was declined. Please verify the information you've entered is correct before submitting your payment. Thank you! You may contact us for further assistance.</li>
-    </ul>
-  </div>
-<% end %>
-
-<% if @user_error == 1 %>
-  <div class="row" id="error_explanation">
-    <h2> All fields must be completed. Thank you! </h2>
-  </div>
-<% end %>
-
-<% if @invalid == 1 %>
-  <div class="row" id="error_explanation">
-    <h2>Invalid or Expired:</h2>
-    <ul>
-      <li>The code you entered is either invalid or expired.</li>
-    </ul>
-  </div>
-<% end %>
-
-<% if @redeemed == 1 %>
-  <div class="row" id="redeemed_explanation">
-    <h2>Discount Applied:</h2>
-    <ul>
-      <li>You may proceed with enrollment.</li>
-    </ul>
-  </div>
-<% end %>
-
-<div class="row">
-  <h3><%= @type.name %></h3>
-  <div class="medium-12 large-12 column">
-    <h4><%= @type.description %></h4>
-    <% if @type.notes.size > 0 %>
-      <p>
-        <strong> NOTE: <%= @type.notes %> </strong>
-      </p>
-    <% end %>
-    <% if @type.duration.size > 0 %>
-      <p>Duration: <%= @type.duration %></p>
-    <% end %>
-  </div>
-</div>
-
-<div class="row">
-  <div class="medium-12 large-12 column">
-    <% if @type.textbooks.size > 0 %>
-      <div class="medium-12 large-12 column">
-      <p>
-        <strong> Required Text:</strong>
-      </p>
-      <% @type.textbooks.each do |book| %>
-        <% if book.buy_url.size > 0 %>
-          <h6>
-            <a href="<%=book.buy_url%>" target="_blank"><%= book.name %></a>
-          </h6>
-        <% else %>
-          <h6><%= book.name %></h6>
-        <% end %>
-        <div class="large-12">
-          <img class="mdl-shadow--2dp" src="<%= book.image_url %>"/>
-        </div>
-        <br></br>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-</div>
-
-<br>
-
-<div class="row">
-  <div class="medium-6 large-6 column">
-    <div class='appts mdl-shadow--2dp'>
-      <table class="mdl-data-table mdl-js-data-table">
-        <thead>
-          <tr>
-            <th class="mdl-data-table__cell--non-numeric">Class Date</th>
-            <th>Time (PDT)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @appointments.each do |appointment| %>
-          <tr>
-            <td class="mdl-data-table__cell--non-numeric">
-              <%= appointment.class_date.strftime("%B %d, %Y (%A)") %>
-            </td>
-            <td>
-              <%= appointment.class_date.strftime("%I:%M %p") %>
-            </td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+<% if @type.passcode.nil? %>
+  <br>
+  <% if @card_error == 1 %>
+    <div class="row" id="error_explanation">
+      <h2>Charge Failed:</h2>
+      <ul>
+        <li>The card you entered was declined. Please verify the information you've entered is correct before submitting your payment. Thank you! You may contact us for further assistance.</li>
+      </ul>
     </div>
-      <% if @appointments.size > 0 %>
-        <% if @redeemed == 0 %>
-          <%= form_for @coupon, url: {:action => "create", :controller => "coupons"}  do |g| %>
-            <%= hidden_field_tag :type_id, @type.id  %>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-              <div class="medium-3" id="coupon-input">
-                <%= g.label "Enter Promotion Code", :class => 'mdl-textfield__label' %>
-                <%= g.text_field :code, :class => 'mdl-textfield__input' %>
-              </div>
-              <div class="medium-3">
-                <%= g.submit 'Redeem', :class => 'coupon-submit button mdl-shadow--2dp' %>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
-        <% else %>
-          <p>
-            <strong>
-              No classes are currently scheduled at this time. Check back for future scheduling.
-            </strong>
-          </p>
-    <% end %>
+  <% end %>
+
+  <% if @user_error == 1 %>
+    <div class="row" id="error_explanation">
+      <h2> All fields must be completed. Thank you! </h2>
+    </div>
+  <% end %>
+
+  <% if @invalid == 1 %>
+    <div class="row" id="error_explanation">
+      <h2>Invalid or Expired:</h2>
+      <ul>
+        <li>The code you entered is either invalid or expired.</li>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if @redeemed == 1 %>
+    <div class="row" id="redeemed_explanation">
+      <h2>Discount Applied:</h2>
+      <ul>
+        <li>You may proceed with enrollment.</li>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <h3><%= @type.name %></h3>
+    <div class="medium-12 large-12 column">
+      <h4><%= @type.description %></h4>
+      <% if @type.notes.size > 0 %>
+        <p>
+          <strong> NOTE: <%= @type.notes %> </strong>
+        </p>
+      <% end %>
+      <% if @type.duration.size > 0 %>
+        <p>Duration: <%= @type.duration %></p>
+      <% end %>
+    </div>
   </div>
 
-  <div id="form" class="medium-6 large-6 column mdl-shadow--2dp">
-    <br>
-    <%= form_for @user, url: {:action => "create", :controller => "types"}, html: {class: "nifty_form", :"data-abide" => ''} do |f| %>
-      <div>
-        <%= f.label "Select Date" %>
-        <%= f.collection_select(:appointment_id, @appointments, :id, :formated_date ) %>
-      </div><br>
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-        <%= f.label :first_name, :class => 'mdl-textfield__label' %>
-        <%= f.text_field :first_name, :class => 'mdl-textfield__input' %>
-      </div>
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-        <%= f.label :last_name, :class => 'mdl-textfield__label' %>
-        <%= f.text_field :last_name, :class => 'mdl-textfield__input' %>
-      </div>
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-        <%= f.label :phone, :class => 'mdl-textfield__label' %>
-        <%= f.text_field :phone, :class => 'mdl-textfield__input' %>
-        <!-- <span class="mdl-textfield__error">Input is not a number!</span> -->
-      </div><br>
-      <div id='total-price'> Total: $<%= @price %> </div>
-      <% if @appointments.size > 0 %>
-        <%= form_tag charges_path do %>
-          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button mdl-shadow--2dp"
-            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-            data-description="Total: $<%= @price %>"
-            data-amount="<%= @price * 100 %>"></script>
+  <div class="row">
+    <div class="medium-12 large-12 column">
+      <% if @type.textbooks.size > 0 %>
+        <div class="medium-12 large-12 column">
+        <p>
+          <strong> Required Text:</strong>
+        </p>
+        <% @type.textbooks.each do |book| %>
+          <% if book.buy_url.size > 0 %>
+            <h6>
+              <a href="<%=book.buy_url%>" target="_blank"><%= book.name %></a>
+            </h6>
+          <% else %>
+            <h6><%= book.name %></h6>
+          <% end %>
+          <div class="large-12">
+            <img class="mdl-shadow--2dp" src="<%= book.image_url %>"/>
+          </div>
+          <br></br>
+          </div>
         <% end %>
       <% end %>
-    <% end %>
-    <% if @refund_policy.policy.size > 0 %>
-      <p>** <%= @refund_policy.policy %></p>
-    <% end %>
+    </div>
   </div>
-</div>
+
+  <br>
+
+  <div class="row">
+    <div class="medium-6 large-6 column">
+      <div class='appts mdl-shadow--2dp'>
+        <table class="mdl-data-table mdl-js-data-table">
+          <thead>
+            <tr>
+              <th class="mdl-data-table__cell--non-numeric">Class Date</th>
+              <th>Time (PDT)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @appointments.each do |appointment| %>
+            <tr>
+              <td class="mdl-data-table__cell--non-numeric">
+                <%= appointment.class_date.strftime("%B %d, %Y (%A)") %>
+              </td>
+              <td>
+                <%= appointment.class_date.strftime("%I:%M %p") %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+        <% if @appointments.size > 0 %>
+          <% if @redeemed == 0 %>
+            <%= form_for @coupon, url: {:action => "create", :controller => "coupons"}  do |g| %>
+              <%= hidden_field_tag :type_id, @type.id  %>
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+                <div class="medium-3" id="coupon-input">
+                  <%= g.label "Enter Promotion Code", :class => 'mdl-textfield__label' %>
+                  <%= g.text_field :code, :class => 'mdl-textfield__input' %>
+                </div>
+                <div class="medium-3">
+                  <%= g.submit 'Redeem', :class => 'coupon-submit button mdl-shadow--2dp' %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+          <% else %>
+            <p>
+              <strong>
+                No classes are currently scheduled at this time. Check back for future scheduling.
+              </strong>
+            </p>
+      <% end %>
+    </div>
+
+    <div id="form" class="medium-6 large-6 column mdl-shadow--2dp">
+      <br>
+      <%= form_for @user, url: {:action => "create", :controller => "types"}, html: {class: "nifty_form", :"data-abide" => ''} do |f| %>
+        <div>
+          <%= f.label "Select Date" %>
+          <%= f.collection_select(:appointment_id, @appointments, :id, :formated_date ) %>
+        </div><br>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+          <%= f.label :first_name, :class => 'mdl-textfield__label' %>
+          <%= f.text_field :first_name, :class => 'mdl-textfield__input' %>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+          <%= f.label :last_name, :class => 'mdl-textfield__label' %>
+          <%= f.text_field :last_name, :class => 'mdl-textfield__input' %>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+          <%= f.label :phone, :class => 'mdl-textfield__label' %>
+          <%= f.text_field :phone, :class => 'mdl-textfield__input' %>
+          <!-- <span class="mdl-textfield__error">Input is not a number!</span> -->
+        </div><br>
+        <div id='total-price'> Total: $<%= @price %> </div>
+        <% if @appointments.size > 0 %>
+          <%= form_tag charges_path do %>
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button mdl-shadow--2dp"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              data-description="Total: $<%= @price %>"
+              data-amount="<%= @price * 100 %>"></script>
+          <% end %>
+        <% end %>
+      <% end %>
+      <% if @refund_policy.policy.size > 0 %>
+        <p>** <%= @refund_policy.policy %></p>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <%= form_for @coupon, url: {:action => "create", :controller => "coupons"}  do |g| %>
+    <%= hidden_field_tag :type_id, @type.id  %>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+      <div class="medium-3" id="coupon-input">
+        <%= g.label "Enter Promotion Code", :class => 'mdl-textfield__label' %>
+        <%= g.text_field :code, :class => 'mdl-textfield__input' %>
+      </div>
+      <div class="medium-3">
+        <%= g.submit 'Redeem', :class => 'coupon-submit button mdl-shadow--2dp' %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
 
 <br>
 <br>
