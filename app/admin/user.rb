@@ -31,7 +31,11 @@ permit_params :list, :of, :attributes, :on, :model, :first_name, :last_name, :em
     column :email
     column :formatted_phone
     column :appointment_id do |user|
-      Appointment.where(id: user.appointment_id).first.formated_date
+      if user.appointment.nil?
+        "class deleted"
+      else
+        Appointment.where(id: user.appointment_id).first.formated_date
+      end
     end
     column :id
     actions # view/edit/delete
