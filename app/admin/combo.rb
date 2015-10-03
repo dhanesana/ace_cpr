@@ -16,27 +16,27 @@ permit_params :list, :of, :attributes, :on, :model, :primary_id, :secondary_id
     column :id
     column 'Primary Type' do |combo|
       appt = Appointment.where(id: combo.primary_id).first
-      "#{appt.type.name}"
+      appt.nil? ? "class deleted" : "#{appt.type.name}"
     end
     column 'Primary Date' do |combo|
       appt = Appointment.where(id: combo.primary_id).first
-      "#{appt.formated_date}"
+      appt.nil? ? "class deleted" : "#{appt.formated_date}"
     end
     column 'Primary Students' do |combo|
       appt = Appointment.where(id: combo.primary_id).first
-      "#{appt.users.size}"
+      appt.nil? ? "class deleted" : "#{appt.users.size}"
     end
     column 'Secondary Type' do |combo|
       appt = Appointment.where(id: combo.secondary_id).first
-      "#{appt.type.name}"
+      appt.nil? ? "class deleted" : "#{appt.type.name}"
     end
     column 'Secondary Date' do |combo|
       appt = Appointment.where(id: combo.secondary_id).first
-      "#{appt.formated_date}"
+      appt.nil? ? "class deleted" : "#{appt.formated_date}"
     end
     column 'Secondary Students' do |combo|
       appt = Appointment.where(id: combo.secondary_id).first
-      "#{appt.users.size}"
+      appt.nil? ? "class deleted" : "#{appt.users.size}"
     end
     actions # view/edit/delete
   end
