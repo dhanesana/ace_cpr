@@ -15,6 +15,13 @@ permit_params :list, :of, :attributes, :on, :model, :admin_user_id, :class_date,
   index do
     column :class_date
     column :admin_user
+    column :type_id do |appt|
+      if appt.type.nil?
+        "type deleted"
+      else
+        Type.where(id: appt.type_id).first.name
+      end
+    end
     column 'Enrolled' do |appointment|
       appointment.users.size
     end
@@ -34,7 +41,13 @@ permit_params :list, :of, :attributes, :on, :model, :admin_user_id, :class_date,
     attributes_table do
       row :class_date
       row :admin_user
-      row :type_id
+      row :type_id do |appt|
+        if appt.type.nil?
+          "type deleted"
+        else
+          Type.where(id: appt.type_id).first.name
+        end
+      end
     end
     panel("Students") do
       table_for(appt.users) do
