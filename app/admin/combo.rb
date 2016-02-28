@@ -43,8 +43,8 @@ permit_params :list, :of, :attributes, :on, :model, :primary_id, :secondary_id
 
   form do |f|
     f.inputs "Combo Details" do
-      f.input :primary_id, as: :select, collection: Appointment.all.collect {|appt| ["#{appt.formated_date} => #{appt.type.name}", appt.id] }
-      f.input :secondary_id, as: :select, collection: Appointment.all.collect {|appt| ["#{appt.formated_date} => #{appt.type.name}", appt.id] }
+      f.input :primary_id, as: :select, collection: Appointment.all.collect { |appt| next if appt == nil; ["#{appt.formated_date} => #{appt.type.name}", appt.id] }
+      f.input :secondary_id, as: :select, collection: Appointment.all.collect { |appt| next if appt == nil; ["#{appt.formated_date} => #{appt.type.name}", appt.id] }
     end
     f.actions
   end
