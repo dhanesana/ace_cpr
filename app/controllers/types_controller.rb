@@ -46,7 +46,17 @@ class TypesController < ApplicationController
     else
       @price = @type.cost
     end
-    @amount = @price * 100
+
+    if @type.books.size < 1
+      @amount = @price * 100
+    else
+      if params['checkboxid']
+        @amount = @price * 100
+      else
+        @amount = (@price * 100) + (@type.books.first.cost * 100)
+      end
+    end
+
     @user = User.new(
       first_name: params[:user][:first_name],
       last_name: params[:user][:last_name],

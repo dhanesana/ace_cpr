@@ -13,10 +13,20 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require_tree .
+//= require_tree
 
-// $(function(){ $(document).foundation(); });
+$(document).ready(function() {
 
-// $(document).on('page:change', function() {
-//   $(document).foundation();
-// });
+    $('#checkboxid').change(function() {
+        if($(this).is(":checked")) {
+          $('.own-book').show();
+          $('.without-book').hide();
+          $('.without').hide();
+        } else {
+          $('.own-book').hide();
+          $('.without-book').show();
+          $('.without').show();
+        }
+    });
+
+});
