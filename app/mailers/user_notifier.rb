@@ -9,6 +9,7 @@ class UserNotifier < ActionMailer::Base
     @appointment = Appointment.where(id: @user.appointment_id).first
     mail(
       :to      => @user.email,
+      :bcc     => "acecprsd@gmail.com",
       :subject => "Ace CPR SD Sign-Up Confirmation ##{@user.id}"
     )
   end
