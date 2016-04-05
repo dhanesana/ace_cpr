@@ -46,13 +46,26 @@ class TypesController < ApplicationController
     else
       @price = @type.cost
     end
-    @amount = @price * 100
+
+    if @type.books.size < 1
+      @amount = @price * 100
+    else
+      if params['checkboxid']
+        @amount = @price * 100
+        @purchased = false
+      else
+        @amount = (@price * 100) + (@type.books.first.cost * 100)
+        @purchased = true
+      end
+    end
+
     @user = User.new(
       first_name: params[:user][:first_name],
       last_name: params[:user][:last_name],
       phone: params[:user][:phone],
       email: params[:stripeEmail],
-      appointment_id: params[:user][:appointment_id]
+      appointment_id: params[:user][:appointment_id],
+      purchased_book: @purchased
     )
 
     if @user.save
@@ -86,7 +99,8 @@ class TypesController < ApplicationController
             last_name: "#{params[:user][:last_name]} (via combo ##{combo.id})",
             phone: params[:user][:phone],
             email: params[:stripeEmail],
-            appointment_id: course.id
+            appointment_id: course.id,
+            purchased_book: @purchased
           )
           user.save
         end

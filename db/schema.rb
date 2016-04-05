@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150916061131) do
+ActiveRecord::Schema.define(version: 20160405093740) do
 
   create_table "about_bullets", force: :cascade do |t|
     t.text     "bullet"
@@ -80,6 +80,16 @@ ActiveRecord::Schema.define(version: 20150916061131) do
   end
 
   add_index "appointments", ["admin_user_id"], name: "index_appointments_on_admin_user_id"
+
+  create_table "books", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "cost"
+    t.integer  "type_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "image_url"
+  end
 
   create_table "combos", force: :cascade do |t|
     t.integer  "primary_id"
@@ -159,8 +169,9 @@ ActiveRecord::Schema.define(version: 20150916061131) do
     t.string   "email"
     t.string   "phone"
     t.string   "formatted_phone"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "purchased_book",  default: false
   end
 
   add_index "users", ["appointment_id"], name: "index_users_on_appointment_id"

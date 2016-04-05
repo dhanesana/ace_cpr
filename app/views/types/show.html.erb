@@ -71,30 +71,31 @@
 
 <div class="row">
   <div class="medium-12 large-12 column">
-    <% if @type.textbooks.size > 0 %>
+    <% if @type.books.size > 0 %>
       <div class="medium-12 large-12 column">
-      <p>
-        <strong> Required Text:</strong>
-      </p>
-      <% @type.textbooks.each do |book| %>
-        <% if book.buy_url.size > 0 %>
-          <h6>
-            <a href="<%=book.buy_url%>" target="_blank"><%= book.name %></a>
-          </h6>
-        <% else %>
-          <h6><%= book.name %></h6>
-        <% end %>
+        <h6>
+          <strong> Required Text:</strong>
+        </h6>
+        <h6>
+          <%= @type.books.first.title %>
+        </h6>
+        <p><%= @type.books.first.description %></p>
         <div class="large-12">
-          <img class="mdl-shadow--2dp" src="<%= book.image_url %>"/>
+          <img class="" src="<%= @type.books.first.image_url %>"/>
         </div>
-        <br></br>
-        </div>
-      <% end %>
+        <hr>
+      </div>
     <% end %>
   </div>
 </div>
 
 <br>
+<!-- RADIO BUTTONZ -->
+<!-- <div id='check-book' class='medium-12 large-12 column mdl-shadow--2dp'>
+  <form>
+    <input type="checkbox" id="checkboxid" /> I will bring my own book<br>
+  </form>
+</div> -->
 
 <div class="row">
   <div class="medium-6 large-6 column">
@@ -144,6 +145,9 @@
     <% end %>
   </div>
 
+<!-- if no books -->
+<% if @type.books.size < 1 %>
+
   <div id="form" class="medium-6 large-6 column mdl-shadow--2dp">
     <br>
     <%= form_for @user, url: {:action => "create", :controller => "types"}, html: {class: "nifty_form", :"data-abide" => ''} do |f| %>
@@ -164,7 +168,7 @@
         <%= f.text_field :phone, :class => 'mdl-textfield__input' %>
         <!-- <span class="mdl-textfield__error">Input is not a number!</span> -->
       </div><br>
-      <div id='total-price'> Total: $<%= @price %> </div>
+      <div class='total-price'> Total: $<%= @price %> </div>
       <% if @appointments.size > 0 %>
         <%= form_tag charges_path do %>
           <script src="https://checkout.stripe.com/checkout.js" class="stripe-button mdl-shadow--2dp"
@@ -178,6 +182,59 @@
       <p>** <%= @refund_policy.policy %></p>
     <% end %>
   </div>
+
+<% else %>
+
+    <div id="form" class="medium-6 large-6 column mdl-shadow--2dp">
+      <br>
+      <%= form_for @user, url: {:action => "create", :controller => "types"}, html: {class: "nifty_form", :"data-abide" => ''} do |f| %>
+        <div>
+          <%= f.label "Select Date" %>
+          <%= f.collection_select(:appointment_id, @appointments, :id, :formated_date ) %>
+        </div><br>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+          <%= f.label :first_name, :class => 'mdl-textfield__label' %>
+          <%= f.text_field :first_name, :class => 'mdl-textfield__input' %>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+          <%= f.label :last_name, :class => 'mdl-textfield__label' %>
+          <%= f.text_field :last_name, :class => 'mdl-textfield__input' %>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+          <%= f.label :phone, :class => 'mdl-textfield__label' %>
+          <%= f.text_field :phone, :class => 'mdl-textfield__input' %>
+          <!-- <span class="mdl-textfield__error">Input is not a number!</span> -->
+        </div><br>
+        <%= check_box_tag :checkboxid, checked = true %> I will bring my own student manual<span class='without'> (- $<%= @type.books.first.cost %>.00) </span> </br></br>
+        <div class='total-price own-book'> Total: $<%= @price %> </div>
+        <div class='total-price without-book'> Total: $<%= @price + @type.books.first.cost %><span class='without'>*</span> </div>
+        <div class='without without-blurb'>
+          <p>*This total reflects the $<%= @price %>.00 charge for the course and the $<%= @type.books.first.cost %>.00 charge for the student manual. If you are bringing your own student manual, please check the “I will bring my own student manual” box above and the new total will be updated to reflect only the price of the course.</p>
+        </div>
+        <% if @appointments.size > 0 %>
+          <%= form_tag charges_path do %>
+            <div class='own-book'>
+              <script src="https://checkout.stripe.com/checkout.js" class="stripe-button mdl-shadow--2dp"
+                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                data-description="Total: $<%= @price %>"
+                data-amount="<%= @price * 100 %>"></script>
+            </div>
+            <div class='without-book'>
+              <script src="https://checkout.stripe.com/checkout.js" class="stripe-button mdl-shadow--2dp"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              data-description="Total: $<%= @price + @type.books.first.cost %>"
+              data-amount="<%= (@price * 100) + (@type.books.first.cost * 100) %>"></script>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+      <% if @refund_policy.policy.size > 0 %>
+        <p>** <%= @refund_policy.policy %></p>
+      <% end %>
+    </div>
+
+<% end %>
+
 </div>
 
 <br>

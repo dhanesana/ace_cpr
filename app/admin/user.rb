@@ -3,7 +3,7 @@ ActiveAdmin.register User do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :list, :of, :attributes, :on, :model, :first_name, :last_name, :email, :phone, :appointment_id
+permit_params :list, :of, :attributes, :on, :model, :first_name, :last_name, :email, :phone, :appointment_id, :purchased_book
 #
 # or
 #
@@ -21,6 +21,7 @@ permit_params :list, :of, :attributes, :on, :model, :first_name, :last_name, :em
       f.input :last_name
       f.input :email
       f.input :phone
+      f.input :purchased_book
     end
     f.actions
   end
@@ -29,6 +30,7 @@ permit_params :list, :of, :attributes, :on, :model, :first_name, :last_name, :em
     column :last_name
     column :first_name
     column :email
+    column :purchased_book
     column :formatted_phone
     column :appointment_id do |user|
       if user.appointment.nil?
