@@ -33,20 +33,14 @@
     </table>
     <p></p>
     <strong>PLEASE BRING:</strong>
-    <% if @appointment.type.textbooks.size < 1 %>
+    <% if @appointment.type.books.size < 1 %>
       <p>
-        None at this time
+        Nothing at this time
       </p>
     <% else %>
-      <% @appointment.type.textbooks.each do |book| %>
-        <% if book.buy_url.size > 0 %>
-          <p>
-            <a href="<%=book.buy_url%>" target="_blank"><%= book.name %></a>
-          </p>
-        <% else %>
-          <p><%= book.name %></p>
-        <% end %>
-      <% end %>
+      <p>
+        <%= @appointment.type.books.first.title %>
+      </p>
     <% end %>
     <strong>WHAT TO EXPECT:</strong>
     <p>Please wear loose, comfortable clothing as you will be practicing skills that require working on your hands and knees, bending, standing, and lifting. If you have any physical conditions that might prevent you from participating in the course, please notify us at least 48 hours prior to your scheduled class so we can arrange any special accommodations that may be necessary. Each instructor will work to accommodate your needs within the stated course completion requirements.</p>
