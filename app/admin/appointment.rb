@@ -60,6 +60,9 @@ permit_params :list, :of, :attributes, :on, :model, :admin_user_id, :class_date,
         column "Phone" do |user|
           link_to("#{user.formatted_phone}", admin_user_path(user))
         end
+        column "Purchased Book?" do |user|
+          link_to("#{user.purchased_book}", admin_user_path(user))
+        end
       end
     end
     active_admin_comments

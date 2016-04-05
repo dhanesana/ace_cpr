@@ -27,6 +27,13 @@ ActiveAdmin.register_page "Dashboard" do
             column(:id)
             column("name")    {|student| link_to("#{student.first_name} #{student.last_name}", admin_user_path(student)) }
             column(:email)    {|student| link_to(student.email, admin_user_path(student)) }
+            column("Purchased Book?") do |student|
+              if student.purchased_book == false
+                "No"
+              else
+                link_to("Yes", admin_appointment_path(student.appointment))
+              end
+            end
             column("class") do |student|
               if student.appointment.nil?
                 "class deleted"
