@@ -32,14 +32,14 @@
       </tr>
     </table>
     <p></p>
-    <strong>PLEASE BRING:</strong>
+    <strong>Required Text:</strong>
     <% if @appointment.type.books.size < 1 %>
       <p>
         Nothing at this time
       </p>
     <% else %>
       <p>
-        <%= @appointment.type.books.first.title %>
+        If you did not purchase a manual from us, please bring your own copy of: <%= @appointment.type.books.first.title %>
       </p>
     <% end %>
     <strong>WHAT TO EXPECT:</strong>
