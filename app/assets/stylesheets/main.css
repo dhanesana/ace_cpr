@@ -157,8 +157,12 @@ a.button, a:link.button, a:visited.button, input[type=submit], input[type=button
 }
 
 .mdl-textfield__label:after {
-  top: 41px;
+  /*top: 41px;*/
   background-color: #ff7043 !important;
+}
+
+.coupon-label:after {
+  top: 40px;
 }
 
 .mdl-textfield__input {
