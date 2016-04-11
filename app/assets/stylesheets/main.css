@@ -153,7 +153,7 @@ a.button, a:link.button, a:visited.button, input[type=submit], input[type=button
 }
 
 .mdl-textfield__label {
-  top: 16px !important;
+  top: 10px !important;
 }
 
 .mdl-textfield__label:after {
