@@ -69,25 +69,41 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="medium-12 large-12 column">
-    <% if @type.books.size > 0 %>
-      <div class="medium-12 large-12 column">
-        <h6>
-          <strong> Required Text:</strong>
-        </h6>
-        <h6>
-          <%= @type.books.first.title %>
-        </h6>
-        <p><%= @type.books.first.description %></p>
-        <div class="large-12">
-          <img class="" src="<%= @type.books.first.image_url %>"/>
+<% if @type.books.size > 0 %>
+  <style>
+    .le-book-header {
+      background-image: url("<%= @type.books.first.image_url %>");
+      background-repeat: no-repeat;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      min-height: 200px;
+      border-right: 1px black;
+    }
+    .book-info {
+      border-left: solid #BDBDBD;
+      border-width: 1px;
+      border-height: 1px;
+    }
+  </style>
+  <div class="row">
+    <hr>
+    <h6><strong> Required Text: </strong></h6>
+    <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+      <header class="le-book-header mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--white-100 mdl-color-text--white">
+      </header>
+      <div class="book-info mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+        <div class="mdl-card__supporting-text">
+          <h4><%= @type.books.first.title %></h4>
+          <%= @type.books.first.description %>
         </div>
-        <hr>
       </div>
-    <% end %>
+    </section>
+    <br>
+    <hr>
   </div>
-</div>
+<% end %>
 
 <br>
 <!-- RADIO BUTTONZ -->
@@ -127,7 +143,7 @@
             <%= hidden_field_tag :type_id, @type.id  %>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
               <div class="medium-3" id="coupon-input">
-                <%= g.label "Enter Promotion Code", :class => 'mdl-textfield__label' %>
+                <%= g.label "Enter Promotion Code", :class => 'mdl-textfield__label coupon-label' %>
                 <%= g.text_field :code, :class => 'mdl-textfield__input' %>
               </div>
               <div class="medium-3">
