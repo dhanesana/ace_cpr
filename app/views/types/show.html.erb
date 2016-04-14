@@ -187,7 +187,7 @@
       <div class='total-price'> Total: $<%= @price %> </div>
       <% if @appointments.size > 0 %>
         <%= form_tag charges_path do %>
-          <script src="httpss://checkout.stripe.com/checkout.js" class="stripe-button mdl-shadow--2dp"
+          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button mdl-shadow--2dp"
             data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
             data-description="Total: $<%= @price %>"
             data-amount="<%= @price * 100 %>"></script>
@@ -230,13 +230,13 @@
         <% if @appointments.size > 0 %>
           <%= form_tag charges_path do %>
             <div class='own-book'>
-              <script src="httpss://checkout.stripe.com/checkout.js" class="stripe-button mdl-shadow--2dp"
+              <script src="https://checkout.stripe.com/checkout.js" class="stripe-button mdl-shadow--2dp"
                 data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
                 data-description="Total: $<%= @price %>"
                 data-amount="<%= @price * 100 %>"></script>
             </div>
             <div class='without-book'>
-              <script src="httpss://checkout.stripe.com/checkout.js" class="stripe-button mdl-shadow--2dp"
+              <script src="https://checkout.stripe.com/checkout.js" class="stripe-button mdl-shadow--2dp"
               data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
               data-description="Total: $<%= @price + @type.books.first.cost %>"
               data-amount="<%= (@price * 100) + (@type.books.first.cost * 100) %>"></script>
