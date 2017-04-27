@@ -44,7 +44,6 @@ form input[type="text"] {
 
 #form {
   border-radius: 1%;
-  /*display: none;*/
 }
 
 .total-price {
@@ -157,7 +156,6 @@ a.button, a:link.button, a:visited.button, input[type=submit], input[type=button
 }
 
 .mdl-textfield__label:after {
-  /*top: 41px;*/
   background-color: #ff7043 !important;
 }
 
